@@ -23,7 +23,7 @@ export const jmbag = z
 export const phoneNumber = z
     .string({ required_error: messages.required })
     .min(1, messages.required)
-    .max(100, 'Broj mobitela mora sadržavati do 100 znakova.')
+    .max(25, 'Broj mobitela mora sadržavati do 25 znakova.')
 
 export const password = z
     .string()
