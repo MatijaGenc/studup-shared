@@ -34,7 +34,7 @@ exports.jmbag = zod_1.z
 exports.phoneNumber = zod_1.z
     .string({ required_error: exports.messages.required })
     .min(1, exports.messages.required)
-    .max(100, 'Broj mobitela mora sadržavati do 100 znakova.');
+    .max(25, 'Broj mobitela mora sadržavati do 25 znakova.');
 exports.password = zod_1.z
     .string()
     .min(1, 'Polje je obvezno.')
