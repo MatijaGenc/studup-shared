@@ -19,10 +19,13 @@ export const ApplicationStatus = {
 } as const
 export type ApplicationStatusValue = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
 
-export const ComplainStatus = {
+export const ComplaintStatus = {
     UNSUBMITTED: 1,
     SUBMITTED: 2,
     ACCEPTED: 3,
     REJECTED: 4,
 } as const
-export type ComplainStatusValue = (typeof ComplainStatus)[keyof typeof ComplainStatus]
+export type ComplaintStatusValue = (typeof ComplaintStatus)[keyof typeof ComplaintStatus]
+
+export const ComplainStatus = ComplaintStatus
+export type ComplainStatusValue = ComplaintStatusValue

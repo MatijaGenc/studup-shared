@@ -1,72 +1,81 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
+exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
 const zod_1 = require("zod");
-__exportStar(require("zod"), exports);
+const enums_1 = require("./enums");
 const ONLY_NUMBERS_REGEX = /^\d+$/;
+const CROATIAN_PHONE_REGEX = /^(?:\+385|0)(?:1|91|92|95|97|99|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53|54|55|56|62|63|64|65|71|72|73|74|75|76|77|81|82|83|84|85|86|87|88|89)\d{6,7}$/;
 exports.messages = {
     required: 'Polje je obvezno.',
+    invalidDate: 'Datum nije ispravnog formata.',
+    invalidEmail: 'Email nije pravilnog formata.',
+    emailMaxLength: 'Email mora sadržavati do 45 znakova.',
+    jmbagLength: 'JMBAG mora sadržavati 10 brojeva.',
+    jmbagOnlyNumbers: 'JMBAG mora sadržavati samo brojeve.',
+    phoneMaxLength: 'Broj mobitela mora sadržavati do 25 znakova.',
+    passwordMinLength: 'Lozinka mora sadržavati najmanje 8 znakova.',
+    passwordMaxLength: 'Lozinka mora sadržavati do 50 znakova.',
+    passwordLowercase: 'Lozinka mora sadržavati barem jedno malo slovo.',
+    passwordUppercase: 'Lozinka mora sadržavati barem jedno veliko slovo.',
+    passwordNumber: 'Lozinka mora sadržavati barem jedan broj.',
+    nameMaxLength: 'Ime mora sadržavati do 45 znakova.',
+    surnameMaxLength: 'Prezime mora sadržavati do 45 znakova.',
+    oibLength: 'OIB mora sadržavati 11 znakova.',
+    oibOnlyNumbers: 'OIB mora sadržavati samo brojeve.',
+    addressMaxLength: 'Adresa može sadržavati do 100 znakova.',
+    companyNameMaxLength: 'Ime tvrtke mora sadržavati do 90 znakova.',
+    invalidCode: 'Kod je neispravnog formata.',
+    jobDescriptionMaxLength: 'Opis posla mora sadržavati do 500 znakova.',
+    jobTitleMaxLength: 'Naslov posla može sadržavati do 70 znakova.',
+    invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
 };
 exports.email = zod_1.z
     .string()
-    .min(1, 'Polje je obvezno.')
-    .max(45, 'Email mora sadržavati do 45 znakova.')
-    .email('Email nije pravilnog formata.');
+    .min(1, exports.messages.required)
+    .max(45, exports.messages.emailMaxLength)
+    .email(exports.messages.invalidEmail);
 exports.jmbag = zod_1.z
     .string()
-    .min(1, 'Polje je obvezno.')
-    .length(10, 'JMBAG mora sadržavati 10 brojeva.')
-    .regex(ONLY_NUMBERS_REGEX, 'JMBAG mora sadržavati samo brojeve.');
+    .min(1, exports.messages.required)
+    .length(10, exports.messages.jmbagLength)
+    .regex(ONLY_NUMBERS_REGEX, exports.messages.jmbagOnlyNumbers);
 exports.phoneNumber = zod_1.z
     .string({ required_error: exports.messages.required })
     .min(1, exports.messages.required)
-    .max(25, 'Broj mobitela mora sadržavati do 25 znakova.');
+    .max(25, exports.messages.phoneMaxLength)
+    .regex(CROATIAN_PHONE_REGEX, exports.messages.invalidPhoneFormat);
 exports.password = zod_1.z
     .string()
-    .min(1, 'Polje je obvezno.')
-    .min(8, 'Lozinka mora sadržavati najmanje 8 znakova.')
-    .max(50, 'Lozinka mora sadržavati do 50 znakova.')
-    .regex(/[a-z]/, 'Lozinka mora sadržavati barem jedno malo slovo.')
-    .regex(/[A-Z]/, 'Lozinka mora sadržavati barem jedno veliko slovo.')
-    .regex(/[0-9]/, 'Lozinka mora sadržavati barem jedan broj.');
+    .min(1, exports.messages.required)
+    .min(8, exports.messages.passwordMinLength)
+    .max(50, exports.messages.passwordMaxLength)
+    .regex(/[a-z]/, exports.messages.passwordLowercase)
+    .regex(/[A-Z]/, exports.messages.passwordUppercase)
+    .regex(/[0-9]/, exports.messages.passwordNumber);
 exports.firstName = zod_1.z
     .string()
     .min(1, exports.messages.required)
-    .max(45, 'Ime mora sadržavati do 45 znakova.');
+    .max(45, exports.messages.nameMaxLength);
 exports.lastName = zod_1.z
     .string()
     .min(1, exports.messages.required)
-    .max(45, 'Prezime mora sadržavati do 45 znakova.');
+    .max(45, exports.messages.surnameMaxLength);
 exports.oib = zod_1.z
     .string()
     .min(1, { message: exports.messages.required })
-    .length(11, 'OIB mora sadržavati 11 znakova.')
-    .regex(ONLY_NUMBERS_REGEX, 'OIB mora sadržavati samo brojeve.');
+    .length(11, exports.messages.oibLength)
+    .regex(ONLY_NUMBERS_REGEX, exports.messages.oibOnlyNumbers);
 exports.address = zod_1.z
     .string()
     .min(1, { message: exports.messages.required })
-    .max(100, 'Adresa može sadržavati do 100 znakova.');
+    .max(100, exports.messages.addressMaxLength);
 exports.companyName = zod_1.z
     .string()
     .min(1, { message: exports.messages.required })
-    .max(90, { message: 'Ime mora sadržavati do 90 znakova.' });
+    .max(90, { message: exports.messages.companyNameMaxLength });
 exports.verificationCode = zod_1.z
     .string()
-    .length(6, { message: 'Kod je neispravnog formata.' });
+    .length(6, { message: exports.messages.invalidCode });
 exports.rating = zod_1.z
     .number()
     .int()
@@ -74,7 +83,7 @@ exports.rating = zod_1.z
     .max(5);
 exports.jobDescription = zod_1.z
     .string()
-    .max(500, 'Opis posla mora sadržavati do 500 znakova.');
+    .max(500, exports.messages.jobDescriptionMaxLength);
 exports.jobHourlyRate = zod_1.z
     .number({ required_error: exports.messages.required })
     .positive();
@@ -85,15 +94,53 @@ exports.maximumApprovedApplications = zod_1.z
 exports.jobTitle = zod_1.z
     .string()
     .min(1, exports.messages.required)
-    .max(70, 'Naslov posla može sadržavati do 70 znakova.');
+    .max(70, exports.messages.jobTitleMaxLength);
 exports.stringDate = zod_1.z.union([
     zod_1.z.string().transform((dateString, context) => {
         const date = new Date(dateString);
-        if (!zod_1.z.date().safeParse(date).success) {
+        if (isNaN(date.getTime())) {
             context.addIssue({ code: zod_1.z.ZodIssueCode.invalid_date });
         }
         return date;
     }),
-    zod_1.z.date(),
+    zod_1.z.date().refine((date) => !isNaN(date.getTime()), { message: exports.messages.invalidDate }),
 ]);
+exports.studentSchema = zod_1.z.object({
+    email: exports.email,
+    password: exports.password,
+    firstName: exports.firstName,
+    lastName: exports.lastName,
+    jmbag: exports.jmbag,
+    phoneNumber: exports.phoneNumber,
+    address: exports.address,
+    universityId: zod_1.z.string(),
+});
+exports.employerSchema = zod_1.z.object({
+    email: exports.email,
+    password: exports.password,
+    companyName: exports.companyName,
+    oib: exports.oib,
+    phoneNumber: exports.phoneNumber,
+    address: exports.address,
+});
+exports.jobSchema = zod_1.z.object({
+    title: exports.jobTitle,
+    description: exports.jobDescription,
+    hourlyRate: exports.jobHourlyRate,
+    phoneNumber: exports.phoneNumber,
+    startDate: exports.stringDate,
+    endDate: exports.stringDate,
+    startTime: exports.stringDate,
+    endTime: exports.stringDate,
+    categoryId: zod_1.z.string(),
+    closeDate: exports.stringDate,
+    maximumApprovedApplications: exports.maximumApprovedApplications,
+    jobType: zod_1.z.enum(['NORMAL', 'FAST']),
+});
+exports.complaintSchema = zod_1.z.object({
+    title: zod_1.z.string().min(1, exports.messages.required).max(100),
+    description: zod_1.z.string().min(1, exports.messages.required).max(1000),
+    categoryId: zod_1.z.string(),
+    status: zod_1.z.nativeEnum(enums_1.ComplaintStatus).optional(),
+});
 //# sourceMappingURL=validation.js.map

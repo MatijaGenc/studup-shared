@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComplainStatus = exports.ApplicationStatus = exports.JobType = exports.JobStatus = void 0;
+exports.ComplainStatus = exports.ComplaintStatus = exports.ApplicationStatus = exports.JobType = exports.JobStatus = void 0;
 exports.JobStatus = {
     ACTIVE: 1,
     CLOSED: 2,
@@ -16,10 +16,11 @@ exports.ApplicationStatus = {
     APPROVED: 3,
     CANCELED: 4,
 };
-exports.ComplainStatus = {
+exports.ComplaintStatus = {
     UNSUBMITTED: 1,
     SUBMITTED: 2,
     ACCEPTED: 3,
     REJECTED: 4,
 };
+exports.ComplainStatus = exports.ComplaintStatus;
 //# sourceMappingURL=enums.js.map
