@@ -162,3 +162,8 @@ export const complaintSchema = z.object({
     categoryId: z.string(),
     status: z.nativeEnum(ComplaintStatus).optional(),
 })
+
+export const createJobComplaintSchema = z.object({
+    description: z.string().min(1, messages.required).max(1000),
+    jobId: z.string().uuid(),
+})

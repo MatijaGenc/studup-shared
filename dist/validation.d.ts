@@ -150,4 +150,14 @@ export declare const complaintSchema: z.ZodObject<{
     categoryId: string;
     status?: 3 | 1 | 2 | 4 | undefined;
 }>;
+export declare const createJobComplaintSchema: z.ZodObject<{
+    description: z.ZodString;
+    jobId: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    description: string;
+    jobId: string;
+}, {
+    description: string;
+    jobId: string;
+}>;
 //# sourceMappingURL=validation.d.ts.map

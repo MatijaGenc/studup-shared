@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
+exports.createJobComplaintSchema = exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("./enums");
 const ONLY_NUMBERS_REGEX = /^\d+$/;
@@ -142,5 +142,9 @@ exports.complaintSchema = zod_1.z.object({
     description: zod_1.z.string().min(1, exports.messages.required).max(1000),
     categoryId: zod_1.z.string(),
     status: zod_1.z.nativeEnum(enums_1.ComplaintStatus).optional(),
+});
+exports.createJobComplaintSchema = zod_1.z.object({
+    description: zod_1.z.string().min(1, exports.messages.required).max(1000),
+    jobId: zod_1.z.string().uuid(),
 });
 //# sourceMappingURL=validation.js.map
