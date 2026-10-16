@@ -38,7 +38,7 @@ export declare const jobDescription: z.ZodString;
 export declare const jobHourlyRate: z.ZodNumber;
 export declare const maximumApprovedApplications: z.ZodNumber;
 export declare const jobTitle: z.ZodString;
-export declare const stringDate: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
+export declare const stringDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
 export declare const studentSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
@@ -48,25 +48,7 @@ export declare const studentSchema: z.ZodObject<{
     phoneNumber: z.ZodString;
     address: z.ZodString;
     universityId: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    jmbag: string;
-    phoneNumber: string;
-    address: string;
-    universityId: string;
-}, {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    jmbag: string;
-    phoneNumber: string;
-    address: string;
-    universityId: string;
-}>;
+}, z.core.$strip>;
 export declare const employerSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
@@ -74,90 +56,37 @@ export declare const employerSchema: z.ZodObject<{
     oib: z.ZodString;
     phoneNumber: z.ZodString;
     address: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    email: string;
-    password: string;
-    phoneNumber: string;
-    address: string;
-    companyName: string;
-    oib: string;
-}, {
-    email: string;
-    password: string;
-    phoneNumber: string;
-    address: string;
-    companyName: string;
-    oib: string;
-}>;
+}, z.core.$strip>;
 export declare const jobSchema: z.ZodObject<{
     title: z.ZodString;
     description: z.ZodString;
     hourlyRate: z.ZodNumber;
     phoneNumber: z.ZodString;
-    startDate: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
-    endDate: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
-    startTime: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
-    endTime: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
+    startDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+    endDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+    startTime: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+    endTime: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
     categoryId: z.ZodString;
-    closeDate: z.ZodUnion<[z.ZodEffects<z.ZodString, Date, string>, z.ZodEffects<z.ZodDate, Date, Date>]>;
+    closeDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
     maximumApprovedApplications: z.ZodNumber;
-    jobType: z.ZodEnum<["NORMAL", "FAST"]>;
-}, "strip", z.ZodTypeAny, {
-    phoneNumber: string;
-    title: string;
-    description: string;
-    hourlyRate: number;
-    startDate: Date;
-    endDate: Date;
-    startTime: Date;
-    endTime: Date;
-    categoryId: string;
-    closeDate: Date;
-    maximumApprovedApplications: number;
-    jobType: "NORMAL" | "FAST";
-}, {
-    phoneNumber: string;
-    title: string;
-    description: string;
-    hourlyRate: number;
-    startDate: string | Date;
-    endDate: string | Date;
-    startTime: string | Date;
-    endTime: string | Date;
-    categoryId: string;
-    closeDate: string | Date;
-    maximumApprovedApplications: number;
-    jobType: "NORMAL" | "FAST";
-}>;
+    jobType: z.ZodEnum<{
+        NORMAL: "NORMAL";
+        FAST: "FAST";
+    }>;
+}, z.core.$strip>;
 export declare const complaintSchema: z.ZodObject<{
     title: z.ZodString;
     description: z.ZodString;
     categoryId: z.ZodString;
-    status: z.ZodOptional<z.ZodNativeEnum<{
+    status: z.ZodOptional<z.ZodEnum<{
         readonly UNSUBMITTED: 1;
         readonly SUBMITTED: 2;
         readonly ACCEPTED: 3;
         readonly REJECTED: 4;
     }>>;
-}, "strip", z.ZodTypeAny, {
-    title: string;
-    description: string;
-    categoryId: string;
-    status?: 3 | 1 | 2 | 4 | undefined;
-}, {
-    title: string;
-    description: string;
-    categoryId: string;
-    status?: 3 | 1 | 2 | 4 | undefined;
-}>;
+}, z.core.$strip>;
 export declare const createJobComplaintSchema: z.ZodObject<{
     description: z.ZodString;
     jobId: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    description: string;
-    jobId: string;
-}, {
-    description: string;
-    jobId: string;
-}>;
+}, z.core.$strip>;
 //# sourceMappingURL=validation.d.ts.map
