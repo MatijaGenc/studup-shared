@@ -11,6 +11,8 @@ __metadata:
   dependencies:
     typescript: "npm:^7.0.0"
     zod: "npm:^4.0.0"
+  peerDependencies:
+    zod: ^4.0.0
   languageName: unknown
   linkType: soft
 
