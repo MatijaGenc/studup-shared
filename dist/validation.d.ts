@@ -70,8 +70,8 @@ export declare const jobSchema: z.ZodObject<{
     closeDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
     maximumApprovedApplications: z.ZodNumber;
     jobType: z.ZodEnum<{
-        NORMAL: "NORMAL";
         FAST: "FAST";
+        NORMAL: "NORMAL";
     }>;
 }, z.core.$strip>;
 export declare const complaintSchema: z.ZodObject<{
