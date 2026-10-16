@@ -42,7 +42,7 @@ export const jmbag = z
     .regex(ONLY_NUMBERS_REGEX, messages.jmbagOnlyNumbers)
 
 export const phoneNumber = z
-    .string({ required_error: messages.required })
+    .string()
     .min(1, messages.required)
     .max(25, messages.phoneMaxLength)
     .regex(CROATIAN_PHONE_REGEX, messages.invalidPhoneFormat)
@@ -97,8 +97,8 @@ export const jobDescription = z
     .max(500, messages.jobDescriptionMaxLength)
 
 export const jobHourlyRate = z
-    .number({ required_error: messages.required })
-    .positive()
+    .number()
+    .positive(messages.required)
 
 export const maximumApprovedApplications = z
     .number()
@@ -114,7 +114,7 @@ export const stringDate = z.union([
     z.string().transform((dateString, context) => {
         const date = new Date(dateString)
         if (isNaN(date.getTime())) {
-            context.addIssue({ code: z.ZodIssueCode.invalid_date })
+            context.addIssue({ code: z.ZodIssueCode.invalid_type, expected: 'Date' })
         }
         return date
     }),

@@ -40,7 +40,7 @@ exports.jmbag = zod_1.z
     .length(10, exports.messages.jmbagLength)
     .regex(ONLY_NUMBERS_REGEX, exports.messages.jmbagOnlyNumbers);
 exports.phoneNumber = zod_1.z
-    .string({ required_error: exports.messages.required })
+    .string()
     .min(1, exports.messages.required)
     .max(25, exports.messages.phoneMaxLength)
     .regex(CROATIAN_PHONE_REGEX, exports.messages.invalidPhoneFormat);
@@ -85,8 +85,8 @@ exports.jobDescription = zod_1.z
     .string()
     .max(500, exports.messages.jobDescriptionMaxLength);
 exports.jobHourlyRate = zod_1.z
-    .number({ required_error: exports.messages.required })
-    .positive();
+    .number()
+    .positive(exports.messages.required);
 exports.maximumApprovedApplications = zod_1.z
     .number()
     .int()
@@ -99,7 +99,7 @@ exports.stringDate = zod_1.z.union([
     zod_1.z.string().transform((dateString, context) => {
         const date = new Date(dateString);
         if (isNaN(date.getTime())) {
-            context.addIssue({ code: zod_1.z.ZodIssueCode.invalid_date });
+            context.addIssue({ code: zod_1.z.ZodIssueCode.invalid_type, expected: 'Date' });
         }
         return date;
     }),
