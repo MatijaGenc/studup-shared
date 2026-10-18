@@ -29,3 +29,12 @@ export type ComplaintStatusValue = (typeof ComplaintStatus)[keyof typeof Complai
 
 export const ComplainStatus = ComplaintStatus
 export type ComplainStatusValue = ComplaintStatusValue
+
+export const NotificationType = {
+    APPLICATION_APPLIED: 'APPLICATION_APPLIED',
+    APPLICATION_APPROVED: 'APPLICATION_APPROVED',
+    APPLICATION_REJECTED: 'APPLICATION_REJECTED',
+    JOB_COMPLETED: 'JOB_COMPLETED',
+    JOB_COMPLETION_CONFIRMED: 'JOB_COMPLETION_CONFIRMED',
+} as const
+export type NotificationTypeValue = (typeof NotificationType)[keyof typeof NotificationType]

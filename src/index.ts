@@ -29,6 +29,7 @@ export {
     ComplaintStatus,
     JobStatus,
     JobType,
+    NotificationType,
 } from './enums'
 export type {
     ApplicationStatusValue,
@@ -36,6 +37,7 @@ export type {
     ComplaintStatusValue,
     JobStatusValue,
     JobTypeValue,
+    NotificationTypeValue,
 } from './enums'
 export {
     codebookTypeSchema,
