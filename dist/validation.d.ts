@@ -22,6 +22,7 @@ export declare const messages: {
     jobDescriptionMaxLength: string;
     jobTitleMaxLength: string;
     invalidPhoneFormat: string;
+    gdprConsentRequired: string;
 };
 export declare const email: z.ZodString;
 export declare const jmbag: z.ZodString;
@@ -39,6 +40,7 @@ export declare const jobHourlyRate: z.ZodNumber;
 export declare const maximumApprovedApplications: z.ZodNumber;
 export declare const jobTitle: z.ZodString;
 export declare const stringDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
+export declare const gdprConsent: z.ZodLiteral<true>;
 export declare const studentSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
@@ -48,6 +50,7 @@ export declare const studentSchema: z.ZodObject<{
     phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
     universityId: z.ZodString;
+    gdprConsent: z.ZodLiteral<true>;
 }, z.core.$strip>;
 export declare const employerSchema: z.ZodObject<{
     email: z.ZodString;
@@ -56,6 +59,7 @@ export declare const employerSchema: z.ZodObject<{
     oib: z.ZodString;
     phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
+    gdprConsent: z.ZodLiteral<true>;
 }, z.core.$strip>;
 export declare const jobSchema: z.ZodObject<{
     title: z.ZodString;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.userTypeSchema = exports.codebookTypeSchema = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.ApplicationStatus = exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = void 0;
+exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.userTypeSchema = exports.codebookTypeSchema = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.ApplicationStatus = exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.gdprConsent = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = void 0;
 var validation_1 = require("./validation");
 Object.defineProperty(exports, "address", { enumerable: true, get: function () { return validation_1.address; } });
 Object.defineProperty(exports, "companyName", { enumerable: true, get: function () { return validation_1.companyName; } });
@@ -9,6 +9,7 @@ Object.defineProperty(exports, "createJobComplaintSchema", { enumerable: true, g
 Object.defineProperty(exports, "email", { enumerable: true, get: function () { return validation_1.email; } });
 Object.defineProperty(exports, "employerSchema", { enumerable: true, get: function () { return validation_1.employerSchema; } });
 Object.defineProperty(exports, "firstName", { enumerable: true, get: function () { return validation_1.firstName; } });
+Object.defineProperty(exports, "gdprConsent", { enumerable: true, get: function () { return validation_1.gdprConsent; } });
 Object.defineProperty(exports, "jmbag", { enumerable: true, get: function () { return validation_1.jmbag; } });
 Object.defineProperty(exports, "jobDescription", { enumerable: true, get: function () { return validation_1.jobDescription; } });
 Object.defineProperty(exports, "jobHourlyRate", { enumerable: true, get: function () { return validation_1.jobHourlyRate; } });

@@ -27,6 +27,7 @@ export const messages = {
     jobDescriptionMaxLength: 'Opis posla mora sadržavati do 500 znakova.',
     jobTitleMaxLength: 'Naslov posla može sadržavati do 70 znakova.',
     invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
+    gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 }
 
 export const email = z
@@ -125,6 +126,8 @@ export const stringDate = z.union([
     z.date().refine((date) => !isNaN(date.getTime()), { message: messages.invalidDate }),
 ])
 
+export const gdprConsent = z.literal(true, { message: messages.gdprConsentRequired })
+
 export const studentSchema = z.object({
     email,
     password,
@@ -134,6 +137,7 @@ export const studentSchema = z.object({
     phoneNumber,
     address,
     universityId: z.string(),
+    gdprConsent,
 })
 
 export const employerSchema = z.object({
@@ -143,6 +147,7 @@ export const employerSchema = z.object({
     oib,
     phoneNumber,
     address,
+    gdprConsent,
 })
 
 export const jobSchema = z.object({

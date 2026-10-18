@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createJobComplaintSchema = exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
+exports.createJobComplaintSchema = exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.gdprConsent = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("./enums");
 const ONLY_NUMBERS_REGEX = /^\d+$/;
@@ -28,6 +28,7 @@ exports.messages = {
     jobDescriptionMaxLength: 'Opis posla mora sadržavati do 500 znakova.',
     jobTitleMaxLength: 'Naslov posla može sadržavati do 70 znakova.',
     invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
+    gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 };
 exports.email = zod_1.z
     .string()
@@ -110,6 +111,7 @@ exports.stringDate = zod_1.z.union([
     }),
     zod_1.z.date().refine((date) => !isNaN(date.getTime()), { message: exports.messages.invalidDate }),
 ]);
+exports.gdprConsent = zod_1.z.literal(true, { message: exports.messages.gdprConsentRequired });
 exports.studentSchema = zod_1.z.object({
     email: exports.email,
     password: exports.password,
@@ -119,6 +121,7 @@ exports.studentSchema = zod_1.z.object({
     phoneNumber: exports.phoneNumber,
     address: exports.address,
     universityId: zod_1.z.string(),
+    gdprConsent: exports.gdprConsent,
 });
 exports.employerSchema = zod_1.z.object({
     email: exports.email,
@@ -127,6 +130,7 @@ exports.employerSchema = zod_1.z.object({
     oib: exports.oib,
     phoneNumber: exports.phoneNumber,
     address: exports.address,
+    gdprConsent: exports.gdprConsent,
 });
 exports.jobSchema = zod_1.z.object({
     title: exports.jobTitle,
