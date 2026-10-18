@@ -45,7 +45,8 @@ export const phoneNumber = z
     .string()
     .min(1, messages.required)
     .max(25, messages.phoneMaxLength)
-    .regex(CROATIAN_PHONE_REGEX, messages.invalidPhoneFormat)
+    .transform((val) => val.replace(/[\s\-/()]/g, '').replace(/^\+385\(0\)/, '+385'))
+    .pipe(z.string().regex(CROATIAN_PHONE_REGEX, messages.invalidPhoneFormat))
 
 export const password = z
     .string()
@@ -111,10 +112,13 @@ export const jobTitle = z
     .max(70, messages.jobTitleMaxLength)
 
 export const stringDate = z.union([
+    z.null(),
     z.string().transform((dateString, context) => {
+        if (dateString === '') return null
         const date = new Date(dateString)
         if (isNaN(date.getTime())) {
-            context.addIssue({ code: z.ZodIssueCode.invalid_type, expected: 'Date' })
+            context.addIssue({ code: z.ZodIssueCode.custom, message: messages.invalidDate })
+            return z.NEVER
         }
         return date
     }),

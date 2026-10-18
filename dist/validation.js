@@ -43,7 +43,8 @@ exports.phoneNumber = zod_1.z
     .string()
     .min(1, exports.messages.required)
     .max(25, exports.messages.phoneMaxLength)
-    .regex(CROATIAN_PHONE_REGEX, exports.messages.invalidPhoneFormat);
+    .transform((val) => val.replace(/[\s\-/()]/g, '').replace(/^\+385\(0\)/, '+385'))
+    .pipe(zod_1.z.string().regex(CROATIAN_PHONE_REGEX, exports.messages.invalidPhoneFormat));
 exports.password = zod_1.z
     .string()
     .min(1, exports.messages.required)
@@ -96,10 +97,14 @@ exports.jobTitle = zod_1.z
     .min(1, exports.messages.required)
     .max(70, exports.messages.jobTitleMaxLength);
 exports.stringDate = zod_1.z.union([
+    zod_1.z.null(),
     zod_1.z.string().transform((dateString, context) => {
+        if (dateString === '')
+            return null;
         const date = new Date(dateString);
         if (isNaN(date.getTime())) {
-            context.addIssue({ code: zod_1.z.ZodIssueCode.invalid_type, expected: 'Date' });
+            context.addIssue({ code: zod_1.z.ZodIssueCode.custom, message: exports.messages.invalidDate });
+            return zod_1.z.NEVER;
         }
         return date;
     }),

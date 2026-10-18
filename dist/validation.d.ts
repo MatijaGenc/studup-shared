@@ -25,7 +25,7 @@ export declare const messages: {
 };
 export declare const email: z.ZodString;
 export declare const jmbag: z.ZodString;
-export declare const phoneNumber: z.ZodString;
+export declare const phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
 export declare const password: z.ZodString;
 export declare const firstName: z.ZodString;
 export declare const lastName: z.ZodString;
@@ -38,14 +38,14 @@ export declare const jobDescription: z.ZodString;
 export declare const jobHourlyRate: z.ZodNumber;
 export declare const maximumApprovedApplications: z.ZodNumber;
 export declare const jobTitle: z.ZodString;
-export declare const stringDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+export declare const stringDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
 export declare const studentSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
     firstName: z.ZodString;
     lastName: z.ZodString;
     jmbag: z.ZodString;
-    phoneNumber: z.ZodString;
+    phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
     universityId: z.ZodString;
 }, z.core.$strip>;
@@ -54,20 +54,20 @@ export declare const employerSchema: z.ZodObject<{
     password: z.ZodString;
     companyName: z.ZodString;
     oib: z.ZodString;
-    phoneNumber: z.ZodString;
+    phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
 }, z.core.$strip>;
 export declare const jobSchema: z.ZodObject<{
     title: z.ZodString;
     description: z.ZodString;
     hourlyRate: z.ZodNumber;
-    phoneNumber: z.ZodString;
-    startDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
-    endDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
-    startTime: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
-    endTime: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+    phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
+    startDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
+    endDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
+    startTime: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
+    endTime: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
     categoryId: z.ZodString;
-    closeDate: z.ZodUnion<readonly [z.ZodPipe<z.ZodString, z.ZodTransform<Date, string>>, z.ZodDate]>;
+    closeDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
     maximumApprovedApplications: z.ZodNumber;
     jobType: z.ZodEnum<{
         FAST: "FAST";
