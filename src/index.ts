@@ -6,6 +6,7 @@ export {
     email,
     employerSchema,
     firstName,
+    gdprConsent,
     jmbag,
     jobDescription,
     jobHourlyRate,
