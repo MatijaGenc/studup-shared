@@ -52,4 +52,6 @@ export type {
 export {
     ALLOWED_PROFILE_IMAGE_MIME_TYPES,
     MAX_PROFILE_IMAGE_SIZE_BYTES,
+    ALLOWED_CV_MIME_TYPES,
+    MAX_CV_SIZE_BYTES,
 } from './constants'
