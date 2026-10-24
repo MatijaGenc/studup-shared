@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComplainStatus = exports.ComplaintStatus = exports.ApplicationStatus = exports.JobType = exports.JobStatus = void 0;
+exports.NotificationType = exports.ComplainStatus = exports.ComplaintStatus = exports.ApplicationStatus = exports.JobType = exports.JobStatus = void 0;
 exports.JobStatus = {
     ACTIVE: 1,
     CLOSED: 2,
@@ -23,4 +23,11 @@ exports.ComplaintStatus = {
     REJECTED: 4,
 };
 exports.ComplainStatus = exports.ComplaintStatus;
+exports.NotificationType = {
+    APPLICATION_APPLIED: 'APPLICATION_APPLIED',
+    APPLICATION_APPROVED: 'APPLICATION_APPROVED',
+    APPLICATION_REJECTED: 'APPLICATION_REJECTED',
+    JOB_COMPLETED: 'JOB_COMPLETED',
+    JOB_COMPLETION_CONFIRMED: 'JOB_COMPLETION_CONFIRMED',
+};
 //# sourceMappingURL=enums.js.map

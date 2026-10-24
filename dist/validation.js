@@ -111,7 +111,8 @@ exports.stringDate = zod_1.z.union([
     }),
     zod_1.z.date().refine((date) => !isNaN(date.getTime()), { message: exports.messages.invalidDate }),
 ]);
-exports.gdprConsent = zod_1.z.literal(true, { message: exports.messages.gdprConsentRequired });
+/** Deprecated legacy transport field. A privacy notice is not consent. */
+exports.gdprConsent = zod_1.z.boolean().optional();
 exports.studentSchema = zod_1.z.object({
     email: exports.email,
     password: exports.password,
