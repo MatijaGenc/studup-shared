@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.userTypeSchema = exports.codebookTypeSchema = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.ApplicationStatus = exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.gdprConsent = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = void 0;
+exports.MAX_CV_SIZE_BYTES = exports.ALLOWED_CV_MIME_TYPES = exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.userTypeSchema = exports.codebookTypeSchema = exports.NotificationType = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.ApplicationStatus = exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.gdprConsent = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = void 0;
 var validation_1 = require("./validation");
 Object.defineProperty(exports, "address", { enumerable: true, get: function () { return validation_1.address; } });
 Object.defineProperty(exports, "companyName", { enumerable: true, get: function () { return validation_1.companyName; } });
@@ -31,10 +31,13 @@ Object.defineProperty(exports, "ComplainStatus", { enumerable: true, get: functi
 Object.defineProperty(exports, "ComplaintStatus", { enumerable: true, get: function () { return enums_1.ComplaintStatus; } });
 Object.defineProperty(exports, "JobStatus", { enumerable: true, get: function () { return enums_1.JobStatus; } });
 Object.defineProperty(exports, "JobType", { enumerable: true, get: function () { return enums_1.JobType; } });
+Object.defineProperty(exports, "NotificationType", { enumerable: true, get: function () { return enums_1.NotificationType; } });
 var types_1 = require("./types");
 Object.defineProperty(exports, "codebookTypeSchema", { enumerable: true, get: function () { return types_1.codebookTypeSchema; } });
 Object.defineProperty(exports, "userTypeSchema", { enumerable: true, get: function () { return types_1.userTypeSchema; } });
 var constants_1 = require("./constants");
 Object.defineProperty(exports, "ALLOWED_PROFILE_IMAGE_MIME_TYPES", { enumerable: true, get: function () { return constants_1.ALLOWED_PROFILE_IMAGE_MIME_TYPES; } });
 Object.defineProperty(exports, "MAX_PROFILE_IMAGE_SIZE_BYTES", { enumerable: true, get: function () { return constants_1.MAX_PROFILE_IMAGE_SIZE_BYTES; } });
+Object.defineProperty(exports, "ALLOWED_CV_MIME_TYPES", { enumerable: true, get: function () { return constants_1.ALLOWED_CV_MIME_TYPES; } });
+Object.defineProperty(exports, "MAX_CV_SIZE_BYTES", { enumerable: true, get: function () { return constants_1.MAX_CV_SIZE_BYTES; } });
 //# sourceMappingURL=index.js.map
