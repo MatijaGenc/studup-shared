@@ -30,4 +30,12 @@ export declare const ComplainStatus: {
     readonly REJECTED: 4;
 };
 export type ComplainStatusValue = ComplaintStatusValue;
+export declare const NotificationType: {
+    readonly APPLICATION_APPLIED: 'APPLICATION_APPLIED';
+    readonly APPLICATION_APPROVED: 'APPLICATION_APPROVED';
+    readonly APPLICATION_REJECTED: 'APPLICATION_REJECTED';
+    readonly JOB_COMPLETED: 'JOB_COMPLETED';
+    readonly JOB_COMPLETION_CONFIRMED: 'JOB_COMPLETION_CONFIRMED';
+};
+export type NotificationTypeValue = (typeof NotificationType)[keyof typeof NotificationType];
 //# sourceMappingURL=enums.d.ts.map
