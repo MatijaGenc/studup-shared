@@ -2,7 +2,8 @@ import { z } from 'zod'
 import { ComplaintStatus } from './enums'
 
 const ONLY_NUMBERS_REGEX = /^\d+$/
-const CROATIAN_PHONE_REGEX = /^(?:\+385|0)(?:1|91|92|95|97|99|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53|54|55|56|62|63|64|65|71|72|73|74|75|76|77|81|82|83|84|85|86|87|88|89)\d{6,7}$/
+const CROATIAN_PHONE_REGEX =
+    /^(?:\+385|0)(?:1|91|92|95|97|99|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53|54|55|56|62|63|64|65|71|72|73|74|75|76|77|81|82|83|84|85|86|87|88|89)\d{6,7}$/
 
 export const messages = {
     required: 'Polje je obvezno.',
@@ -30,11 +31,7 @@ export const messages = {
     gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 }
 
-export const email = z
-    .string()
-    .min(1, messages.required)
-    .max(45, messages.emailMaxLength)
-    .email(messages.invalidEmail)
+export const email = z.string().min(1, messages.required).max(45, messages.emailMaxLength).email(messages.invalidEmail)
 
 export const jmbag = z
     .string()
@@ -58,15 +55,9 @@ export const password = z
     .regex(/[A-Z]/, messages.passwordUppercase)
     .regex(/[0-9]/, messages.passwordNumber)
 
-export const firstName = z
-    .string()
-    .min(1, messages.required)
-    .max(45, messages.nameMaxLength)
+export const firstName = z.string().min(1, messages.required).max(45, messages.nameMaxLength)
 
-export const lastName = z
-    .string()
-    .min(1, messages.required)
-    .max(45, messages.surnameMaxLength)
+export const lastName = z.string().min(1, messages.required).max(45, messages.surnameMaxLength)
 
 export const oib = z
     .string()
@@ -74,43 +65,21 @@ export const oib = z
     .length(11, messages.oibLength)
     .regex(ONLY_NUMBERS_REGEX, messages.oibOnlyNumbers)
 
-export const address = z
-    .string()
-    .min(1, { message: messages.required })
-    .max(100, messages.addressMaxLength)
+export const address = z.string().min(1, { message: messages.required }).max(100, messages.addressMaxLength)
 
-export const companyName = z
-    .string()
-    .min(1, { message: messages.required })
-    .max(90, { message: messages.companyNameMaxLength })
+export const companyName = z.string().min(1, { message: messages.required }).max(90, { message: messages.companyNameMaxLength })
 
-export const verificationCode = z
-    .string()
-    .length(6, { message: messages.invalidCode })
+export const verificationCode = z.string().length(6, { message: messages.invalidCode })
 
-export const rating = z
-    .number()
-    .int()
-    .min(1)
-    .max(5)
+export const rating = z.number().int().min(1).max(5)
 
-export const jobDescription = z
-    .string()
-    .max(500, messages.jobDescriptionMaxLength)
+export const jobDescription = z.string().max(500, messages.jobDescriptionMaxLength)
 
-export const jobHourlyRate = z
-    .number()
-    .positive(messages.required)
+export const jobHourlyRate = z.number().positive(messages.required)
 
-export const maximumApprovedApplications = z
-    .number()
-    .int()
-    .min(1)
+export const maximumApprovedApplications = z.number().int().min(1)
 
-export const jobTitle = z
-    .string()
-    .min(1, messages.required)
-    .max(70, messages.jobTitleMaxLength)
+export const jobTitle = z.string().min(1, messages.required).max(70, messages.jobTitleMaxLength)
 
 export const stringDate = z.union([
     z.null(),

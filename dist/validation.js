@@ -30,11 +30,7 @@ exports.messages = {
     invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
     gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 };
-exports.email = zod_1.z
-    .string()
-    .min(1, exports.messages.required)
-    .max(45, exports.messages.emailMaxLength)
-    .email(exports.messages.invalidEmail);
+exports.email = zod_1.z.string().min(1, exports.messages.required).max(45, exports.messages.emailMaxLength).email(exports.messages.invalidEmail);
 exports.jmbag = zod_1.z
     .string()
     .min(1, exports.messages.required)
@@ -54,49 +50,21 @@ exports.password = zod_1.z
     .regex(/[a-z]/, exports.messages.passwordLowercase)
     .regex(/[A-Z]/, exports.messages.passwordUppercase)
     .regex(/[0-9]/, exports.messages.passwordNumber);
-exports.firstName = zod_1.z
-    .string()
-    .min(1, exports.messages.required)
-    .max(45, exports.messages.nameMaxLength);
-exports.lastName = zod_1.z
-    .string()
-    .min(1, exports.messages.required)
-    .max(45, exports.messages.surnameMaxLength);
+exports.firstName = zod_1.z.string().min(1, exports.messages.required).max(45, exports.messages.nameMaxLength);
+exports.lastName = zod_1.z.string().min(1, exports.messages.required).max(45, exports.messages.surnameMaxLength);
 exports.oib = zod_1.z
     .string()
     .min(1, { message: exports.messages.required })
     .length(11, exports.messages.oibLength)
     .regex(ONLY_NUMBERS_REGEX, exports.messages.oibOnlyNumbers);
-exports.address = zod_1.z
-    .string()
-    .min(1, { message: exports.messages.required })
-    .max(100, exports.messages.addressMaxLength);
-exports.companyName = zod_1.z
-    .string()
-    .min(1, { message: exports.messages.required })
-    .max(90, { message: exports.messages.companyNameMaxLength });
-exports.verificationCode = zod_1.z
-    .string()
-    .length(6, { message: exports.messages.invalidCode });
-exports.rating = zod_1.z
-    .number()
-    .int()
-    .min(1)
-    .max(5);
-exports.jobDescription = zod_1.z
-    .string()
-    .max(500, exports.messages.jobDescriptionMaxLength);
-exports.jobHourlyRate = zod_1.z
-    .number()
-    .positive(exports.messages.required);
-exports.maximumApprovedApplications = zod_1.z
-    .number()
-    .int()
-    .min(1);
-exports.jobTitle = zod_1.z
-    .string()
-    .min(1, exports.messages.required)
-    .max(70, exports.messages.jobTitleMaxLength);
+exports.address = zod_1.z.string().min(1, { message: exports.messages.required }).max(100, exports.messages.addressMaxLength);
+exports.companyName = zod_1.z.string().min(1, { message: exports.messages.required }).max(90, { message: exports.messages.companyNameMaxLength });
+exports.verificationCode = zod_1.z.string().length(6, { message: exports.messages.invalidCode });
+exports.rating = zod_1.z.number().int().min(1).max(5);
+exports.jobDescription = zod_1.z.string().max(500, exports.messages.jobDescriptionMaxLength);
+exports.jobHourlyRate = zod_1.z.number().positive(exports.messages.required);
+exports.maximumApprovedApplications = zod_1.z.number().int().min(1);
+exports.jobTitle = zod_1.z.string().min(1, exports.messages.required).max(70, exports.messages.jobTitleMaxLength);
 exports.stringDate = zod_1.z.union([
     zod_1.z.null(),
     zod_1.z.string().transform((dateString, context) => {
