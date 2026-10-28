@@ -2,7 +2,7 @@
 
 Use Node 26 and yarn 4.18.0. Install from the committed lockfile, then run `yarn run check` from this repository root. The command runs typecheck, read-only formatting, lint, build and tests in order; any failure stops the chain and returns a nonzero exit code. Format/lint checks never rewrite source. Run an explicit formatting command separately when fixing a failure.
 
-CI calls the same command. The pre-push hook runs it for code updates, including main; deletion-only updates contain no code to validate. Install dependencies to install the hook (Husky in app repositories; `prepare` in shared/infrastructure). Do not bypass hooks or treat a local pass as evidence that remote CI/deployment succeeded.
+CI calls the same command. The pre-push hook runs it for code updates, including main; deletion-only updates contain no code to validate. After `yarn install --immutable`, run `yarn hooks:install` explicitly to install the hook. Yarn 4 does not invoke `prepare` automatically. This is required setup for a fresh Git checkout; CI still enforces the quality command independently. Do not bypass hooks or treat a local pass as evidence that remote CI/deployment succeeded.
 
 `test:gates` injects real failing child processes at each of the typecheck/lint/build/test positions, verifies later commands stop, rejects missing configuration/executables, and exercises the actual hook with a failing package manager and deletion-only input. These tests verify failure propagation; they supplement each tool's normal checks.
 

@@ -37,3 +37,7 @@ import { JobStatus, ApplicationStatus } from '@studup/shared'
 - `JobType` — NORMAL, FAST
 - `ApplicationStatus` — APPLIED, REJECTED, APPROVED, CANCELED
 - `ComplainStatus` — UNSUBMITTED, SUBMITTED, ACCEPTED, REJECTED
+
+## Git hook setup with Yarn 4
+
+After installing dependencies, run `yarn hooks:install` from this repository root. Yarn 4 does not run `prepare` during install. Complete this step for each new clone/worktree so code pushes run the quality gate; `yarn check` is also available explicitly. See [QUALITY_GATES.md](QUALITY_GATES.md) and [Yarn lifecycle documentation](https://yarnpkg.com/advanced/lifecycle-scripts).
