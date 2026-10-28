@@ -6,17 +6,36 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
-        "prepare": "tsc",
+        "prepare": "tsc && node scripts/install-hooks.cjs",
         "prepack": "npm run build",
         "typecheck": "tsc --noEmit",
-        "lint": "node --check dist/index.js",
-        "test": "node --test tests/*.test.cjs"
+        "lint": "biome check .",
+        "test": "node scripts/test.cjs",
+        "test:gates": "node --test scripts/quality-self-test.cjs",
+        "check": "node scripts/check.cjs",
+        "format:check": "biome format .",
+        "test:quality": "yarn test && yarn test:gates",
+        "hooks:install": "node scripts/install-hooks.cjs",
+        "test:consumers": "tsc --project tests/tsconfig.consumer.json"
     },
     "peerDependencies": {
         "zod": "^4.0.0"
     },
     "devDependencies": {
+        "@biomejs/biome": "2.5.15",
         "typescript": "^7.0.0",
         "zod": "^4.0.0"
-    }
+    },
+    "qualityGates": {
+        "manager": "yarn",
+        "gates": [
+            "typecheck",
+            "format:check",
+            "lint",
+            "build",
+            "test:quality",
+            "test:consumers"
+        ]
+    },
+    "packageManager": "yarn@4.18.0"
 }
