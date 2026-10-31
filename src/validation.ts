@@ -95,7 +95,8 @@ export const stringDate = z.union([
     z.date().refine((date) => !isNaN(date.getTime()), { message: messages.invalidDate }),
 ])
 
-export const gdprConsent = z.literal(true, { message: messages.gdprConsentRequired })
+/** Deprecated legacy transport field. A privacy notice is not consent. */
+export const gdprConsent = z.boolean().optional()
 
 export const studentSchema = z.object({
     email,
