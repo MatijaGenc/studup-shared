@@ -40,8 +40,7 @@ export declare const jobHourlyRate: z.ZodNumber;
 export declare const maximumApprovedApplications: z.ZodNumber;
 export declare const jobTitle: z.ZodString;
 export declare const stringDate: z.ZodUnion<readonly [z.ZodNull, z.ZodPipe<z.ZodString, z.ZodTransform<Date | null, string>>, z.ZodDate]>;
-/** Deprecated legacy transport field. A privacy notice is not consent. */
-export declare const gdprConsent: z.ZodOptional<z.ZodBoolean>;
+export declare const gdprConsent: z.ZodLiteral<true>;
 export declare const studentSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
@@ -51,7 +50,7 @@ export declare const studentSchema: z.ZodObject<{
     phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
     universityId: z.ZodString;
-    gdprConsent: z.ZodOptional<z.ZodBoolean>;
+    gdprConsent: z.ZodLiteral<true>;
 }, z.core.$strip>;
 export declare const employerSchema: z.ZodObject<{
     email: z.ZodString;
@@ -60,7 +59,7 @@ export declare const employerSchema: z.ZodObject<{
     oib: z.ZodString;
     phoneNumber: z.ZodPipe<z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>, z.ZodString>;
     address: z.ZodString;
-    gdprConsent: z.ZodOptional<z.ZodBoolean>;
+    gdprConsent: z.ZodLiteral<true>;
 }, z.core.$strip>;
 export declare const jobSchema: z.ZodObject<{
     title: z.ZodString;
