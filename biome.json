@@ -6,12 +6,7 @@
         "useIgnoreFile": true
     },
     "files": {
-        "includes": [
-            "**",
-            "!!dist",
-            "!!node_modules",
-            "!!graphify-out"
-        ]
+        "includes": ["**", "!!dist", "!!node_modules", "!!graphify-out"]
     },
     "formatter": {
         "indentStyle": "space",
