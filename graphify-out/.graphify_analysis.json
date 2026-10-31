@@ -1,0 +1,281 @@
+{
+  "communities": {
+    "0": [
+      "src_index",
+      "src_validation",
+      "src_validation_address",
+      "src_validation_companyname",
+      "src_validation_complaintschema",
+      "src_validation_createjobcomplaintschema",
+      "src_validation_email",
+      "src_validation_employerschema",
+      "src_validation_firstname",
+      "src_validation_gdprconsent",
+      "src_validation_jmbag",
+      "src_validation_jobdescription",
+      "src_validation_jobhourlyrate",
+      "src_validation_jobschema",
+      "src_validation_jobtitle",
+      "src_validation_lastname",
+      "src_validation_maximumapprovedapplications",
+      "src_validation_messages",
+      "src_validation_oib",
+      "src_validation_password",
+      "src_validation_phonenumber",
+      "src_validation_rating",
+      "src_validation_stringdate",
+      "src_validation_studentschema",
+      "src_validation_verificationcode"
+    ],
+    "1": [
+      "biome",
+      "biome_files",
+      "biome_files_includes",
+      "biome_formatter",
+      "biome_formatter_indentstyle",
+      "biome_formatter_indentwidth",
+      "biome_formatter_linewidth",
+      "biome_formatter_quotestyle",
+      "biome_formatter_semicolons",
+      "biome_javascript",
+      "biome_javascript_formatter",
+      "biome_linter",
+      "biome_linter_enabled",
+      "biome_linter_rules",
+      "biome_rules_preset",
+      "biome_schema",
+      "biome_vcs",
+      "biome_vcs_clientkind",
+      "biome_vcs_enabled",
+      "biome_vcs_useignorefile"
+    ],
+    "2": [
+      "dist_index",
+      "ref_node_assert",
+      "ref_node_child_process",
+      "ref_node_fs",
+      "ref_node_os",
+      "ref_node_path",
+      "ref_node_test",
+      "scripts_check",
+      "scripts_check_loadcommands",
+      "scripts_check_required",
+      "scripts_check_rungatechain",
+      "scripts_install_hooks",
+      "scripts_install_hooks_root",
+      "scripts_quality_self_test",
+      "scripts_test",
+      "scripts_test_tests",
+      "tests_distribution_test",
+      "tests_empty_suite_test",
+      "tests_validation_test"
+    ],
+    "3": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_biomejs_biome",
+      "package_devdependencies_typescript",
+      "package_devdependencies_zod",
+      "package_main",
+      "package_name",
+      "package_packagemanager",
+      "package_peerdependencies",
+      "package_peerdependencies_zod",
+      "package_private",
+      "package_qualitygates",
+      "package_qualitygates_gates",
+      "package_qualitygates_manager",
+      "package_types",
+      "package_version",
+      "ref_biomejs_biome",
+      "ref_typescript"
+    ],
+    "4": [
+      "dist_index_allowed_cv_mime_types",
+      "dist_index_applicationstatus",
+      "dist_index_applicationstatusvalue",
+      "dist_index_codebooktype",
+      "dist_index_email",
+      "dist_index_employerschema",
+      "dist_index_jobschema",
+      "dist_index_jobtype",
+      "dist_index_jobtypevalue",
+      "dist_index_max_cv_size_bytes",
+      "dist_index_phonenumber",
+      "dist_index_studentschema",
+      "dist_index_usertype",
+      "tests_consumer_contract",
+      "tests_consumer_contract_normalizedphone",
+      "tests_consumer_contract_schemas"
+    ],
+    "5": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_declaration",
+      "tsconfig_compileroptions_declarationmap",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_forceconsistentcasinginfilenames",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_outdir",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_rootdir",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_sourcemap",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_include"
+    ],
+    "6": [
+      "scripts_secret_scan",
+      "scripts_secret_scan_changedfiles",
+      "scripts_secret_scan_git",
+      "scripts_secret_scan_ignored_paths",
+      "scripts_secret_scan_isignored",
+      "scripts_secret_scan_mask",
+      "scripts_secret_scan_parseargs",
+      "scripts_secret_scan_readtext",
+      "scripts_secret_scan_report",
+      "scripts_secret_scan_rules",
+      "scripts_secret_scan_scan",
+      "scripts_secret_scan_scantext",
+      "scripts_secret_scan_selftest",
+      "scripts_secret_scan_selftest_build",
+      "scripts_secret_scan_trackedfiles"
+    ],
+    "7": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_check",
+      "package_scripts_format_check",
+      "package_scripts_hooks_install",
+      "package_scripts_lint",
+      "package_scripts_prepack",
+      "package_scripts_prepare",
+      "package_scripts_secret_scan",
+      "package_scripts_test",
+      "package_scripts_test_consumers",
+      "package_scripts_test_gates",
+      "package_scripts_test_quality",
+      "package_scripts_typecheck"
+    ],
+    "8": [
+      "src_enums",
+      "src_enums_applicationstatus",
+      "src_enums_applicationstatusvalue",
+      "src_enums_complainstatus",
+      "src_enums_complainstatusvalue",
+      "src_enums_complaintstatus",
+      "src_enums_complaintstatusvalue",
+      "src_enums_jobstatus",
+      "src_enums_jobstatusvalue",
+      "src_enums_jobtype",
+      "src_enums_jobtypevalue",
+      "src_enums_notificationtype",
+      "src_enums_notificationtypevalue"
+    ],
+    "9": [
+      "ref_zod",
+      "src_types",
+      "src_types_codebooktype",
+      "src_types_codebooktypeschema",
+      "src_types_codebooktypevalue",
+      "src_types_usertype",
+      "src_types_usertypeschema",
+      "src_types_usertypevalue"
+    ],
+    "10": [
+      "tests_tsconfig_consumer",
+      "tests_tsconfig_consumer_compileroptions",
+      "tests_tsconfig_consumer_compileroptions_module",
+      "tests_tsconfig_consumer_compileroptions_noemit",
+      "tests_tsconfig_consumer_compileroptions_skiplibcheck",
+      "tests_tsconfig_consumer_compileroptions_strict",
+      "tests_tsconfig_consumer_compileroptions_target",
+      "tests_tsconfig_consumer_files"
+    ],
+    "11": [
+      "src_constants",
+      "src_constants_allowed_cv_mime_types",
+      "src_constants_allowed_profile_image_mime_types",
+      "src_constants_max_cv_size_bytes",
+      "src_constants_max_profile_image_size_bytes"
+    ],
+    "12": [
+      "githooks_pre_push",
+      "githooks_pre_push__entry"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15666666666666668,
+    "1": 0.1,
+    "2": 0.19883040935672514,
+    "3": 0.1111111111111111,
+    "4": 0.125,
+    "5": 0.125,
+    "6": 0.23809523809523808,
+    "7": 0.14285714285714285,
+    "8": 0.15384615384615385,
+    "9": 0.25,
+    "10": 0.25,
+    "11": 0.4,
+    "12": 1.0
+  },
+  "gods": [
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 14
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 14
+    },
+    {
+      "id": "scripts_secret_scan_scan",
+      "label": "scan()",
+      "degree": 6
+    },
+    {
+      "id": "tests_tsconfig_consumer_compileroptions",
+      "label": "compilerOptions",
+      "degree": 6
+    },
+    {
+      "id": "biome_vcs",
+      "label": "vcs",
+      "degree": 4
+    },
+    {
+      "id": "biome_formatter",
+      "label": "formatter",
+      "degree": 4
+    },
+    {
+      "id": "scripts_secret_scan_scantext",
+      "label": "scanText()",
+      "degree": 4
+    },
+    {
+      "id": "biome_javascript_formatter",
+      "label": "formatter",
+      "degree": 3
+    },
+    {
+      "id": "biome_linter",
+      "label": "linter",
+      "degree": 3
+    },
+    {
+      "id": "ref_zod",
+      "label": "zod",
+      "degree": 3
+    }
+  ],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
