@@ -10,12 +10,21 @@ export declare const JobType: {
 };
 export type JobTypeValue = (typeof JobType)[keyof typeof JobType];
 export declare const ApplicationStatus: {
+    readonly APPLIED: 'APPLIED';
+    readonly REJECTED: 'REJECTED';
+    readonly APPROVED: 'APPROVED';
+    readonly CANCELED: 'CANCELED';
+};
+export type ApplicationStatusValue = (typeof ApplicationStatus)[keyof typeof ApplicationStatus];
+export declare const ApplicationStatusId: {
     readonly APPLIED: 1;
     readonly REJECTED: 2;
     readonly APPROVED: 3;
     readonly CANCELED: 4;
 };
-export type ApplicationStatusValue = (typeof ApplicationStatus)[keyof typeof ApplicationStatus];
+export type ApplicationStatusIdValue = (typeof ApplicationStatusId)[keyof typeof ApplicationStatusId];
+export declare function applicationStatusFromId(id: number): ApplicationStatusValue;
+export declare function applicationStatusToId(status: ApplicationStatusValue): ApplicationStatusIdValue;
 export declare const ComplaintStatus: {
     readonly UNSUBMITTED: 1;
     readonly SUBMITTED: 2;

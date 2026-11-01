@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.gdprConsent = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = exports.userTypeSchema = exports.codebookTypeSchema = exports.NotificationType = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.ApplicationStatus = exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.MAX_CV_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.ALLOWED_CV_MIME_TYPES = void 0;
+exports.verificationCode = exports.studentSchema = exports.stringDate = exports.rating = exports.phoneNumber = exports.password = exports.oib = exports.messages = exports.maximumApprovedApplications = exports.lastName = exports.jobTitle = exports.jobSchema = exports.jobHourlyRate = exports.jobDescription = exports.jmbag = exports.gdprConsent = exports.firstName = exports.employerSchema = exports.email = exports.createJobComplaintSchema = exports.complaintSchema = exports.companyName = exports.address = exports.userTypeSchema = exports.codebookTypeSchema = exports.NotificationType = exports.JobType = exports.JobStatus = exports.ComplaintStatus = exports.ComplainStatus = exports.applicationStatusToId = exports.applicationStatusFromId = exports.ApplicationStatusId = exports.ApplicationStatus = exports.MAX_PROFILE_IMAGE_SIZE_BYTES = exports.MAX_CV_SIZE_BYTES = exports.ALLOWED_PROFILE_IMAGE_MIME_TYPES = exports.ALLOWED_CV_MIME_TYPES = void 0;
 var constants_1 = require("./constants");
 Object.defineProperty(exports, "ALLOWED_CV_MIME_TYPES", { enumerable: true, get: function () { return constants_1.ALLOWED_CV_MIME_TYPES; } });
 Object.defineProperty(exports, "ALLOWED_PROFILE_IMAGE_MIME_TYPES", { enumerable: true, get: function () { return constants_1.ALLOWED_PROFILE_IMAGE_MIME_TYPES; } });
@@ -8,6 +8,9 @@ Object.defineProperty(exports, "MAX_CV_SIZE_BYTES", { enumerable: true, get: fun
 Object.defineProperty(exports, "MAX_PROFILE_IMAGE_SIZE_BYTES", { enumerable: true, get: function () { return constants_1.MAX_PROFILE_IMAGE_SIZE_BYTES; } });
 var enums_1 = require("./enums");
 Object.defineProperty(exports, "ApplicationStatus", { enumerable: true, get: function () { return enums_1.ApplicationStatus; } });
+Object.defineProperty(exports, "ApplicationStatusId", { enumerable: true, get: function () { return enums_1.ApplicationStatusId; } });
+Object.defineProperty(exports, "applicationStatusFromId", { enumerable: true, get: function () { return enums_1.applicationStatusFromId; } });
+Object.defineProperty(exports, "applicationStatusToId", { enumerable: true, get: function () { return enums_1.applicationStatusToId; } });
 Object.defineProperty(exports, "ComplainStatus", { enumerable: true, get: function () { return enums_1.ComplainStatus; } });
 Object.defineProperty(exports, "ComplaintStatus", { enumerable: true, get: function () { return enums_1.ComplaintStatus; } });
 Object.defineProperty(exports, "JobStatus", { enumerable: true, get: function () { return enums_1.JobStatus; } });
