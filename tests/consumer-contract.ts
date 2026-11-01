@@ -5,12 +5,15 @@ import {
     type ApplicationStatusValue,
     applicationStatusFromId,
     applicationStatusToId,
+    authSessionResponseSchema,
     type CodebookType,
     email,
     employerSchema,
     JobType,
     type JobTypeValue,
+    jobApplicationCreateRequestSchema,
     jobSchema,
+    jobSearchRequestSchema,
     MAX_CV_SIZE_BYTES,
     phoneNumber,
     studentSchema,
@@ -28,7 +31,15 @@ const jobType: JobTypeValue = JobType.FAST
 const maxBytes: number = MAX_CV_SIZE_BYTES
 const types: readonly string[] = ALLOWED_CV_MIME_TYPES
 const normalizedPhone: string = phoneNumber.parse('+385 91 234 5678')
-const schemas = [studentSchema, employerSchema, jobSchema, email]
+const schemas = [
+    studentSchema,
+    employerSchema,
+    jobSchema,
+    email,
+    authSessionResponseSchema,
+    jobApplicationCreateRequestSchema,
+    jobSearchRequestSchema,
+]
 void [
     user,
     codebook,
