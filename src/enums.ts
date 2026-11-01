@@ -12,12 +12,35 @@ export const JobType = {
 export type JobTypeValue = (typeof JobType)[keyof typeof JobType]
 
 export const ApplicationStatus = {
+    APPLIED: 'APPLIED',
+    REJECTED: 'REJECTED',
+    APPROVED: 'APPROVED',
+    CANCELED: 'CANCELED',
+} as const
+export type ApplicationStatusValue = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
+
+export const ApplicationStatusId = {
     APPLIED: 1,
     REJECTED: 2,
     APPROVED: 3,
     CANCELED: 4,
 } as const
-export type ApplicationStatusValue = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
+export type ApplicationStatusIdValue = (typeof ApplicationStatusId)[keyof typeof ApplicationStatusId]
+
+const APPLICATION_STATUS_BY_ID: Record<ApplicationStatusIdValue, ApplicationStatusValue> = {
+    [ApplicationStatusId.APPLIED]: ApplicationStatus.APPLIED,
+    [ApplicationStatusId.REJECTED]: ApplicationStatus.REJECTED,
+    [ApplicationStatusId.APPROVED]: ApplicationStatus.APPROVED,
+    [ApplicationStatusId.CANCELED]: ApplicationStatus.CANCELED,
+}
+
+export function applicationStatusFromId(id: number): ApplicationStatusValue {
+    return APPLICATION_STATUS_BY_ID[id as ApplicationStatusIdValue] ?? ApplicationStatus.APPLIED
+}
+
+export function applicationStatusToId(status: ApplicationStatusValue): ApplicationStatusIdValue {
+    return ApplicationStatusId[status]
+}
 
 export const ComplaintStatus = {
     UNSUBMITTED: 1,

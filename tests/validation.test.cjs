@@ -11,7 +11,10 @@ test('packaged schemas preserve normalized Croatian phone numbers', () => {
     assert.equal(shared.phoneNumber.parse('+385 91 234 5678'), '+385912345678')
 })
 test('packaged public enum families match consumer expectations', () => {
-    assert.equal(shared.ApplicationStatus.CANCELED, 4)
+    assert.equal(shared.ApplicationStatus.CANCELED, 'CANCELED')
+    assert.equal(shared.ApplicationStatusId.CANCELED, 4)
+    assert.equal(shared.applicationStatusFromId(3), 'APPROVED')
+    assert.equal(shared.applicationStatusToId('REJECTED'), 2)
     assert.equal(shared.JobType.FAST, 2)
     assert.equal(shared.userTypeSchema.safeParse('admin').success, false)
     assert.equal(shared.codebookTypeSchema.parse('job-category'), 'job-category')

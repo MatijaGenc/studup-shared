@@ -5,6 +5,7 @@ export {
     MAX_PROFILE_IMAGE_SIZE_BYTES,
 } from './constants'
 export type {
+    ApplicationStatusIdValue,
     ApplicationStatusValue,
     ComplainStatusValue,
     ComplaintStatusValue,
@@ -14,6 +15,9 @@ export type {
 } from './enums'
 export {
     ApplicationStatus,
+    ApplicationStatusId,
+    applicationStatusFromId,
+    applicationStatusToId,
     ComplainStatus,
     ComplaintStatus,
     JobStatus,
