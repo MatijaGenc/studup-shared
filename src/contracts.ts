@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ApplicationStatus } from './enums'
+import { ApplicationStatus, JobStatus } from './enums'
 import { email, password, rating, verificationCode } from './validation'
 
 export const uuidSchema = z.string().uuid()
@@ -11,6 +11,8 @@ export const applicationStatusSchema = z.enum([
     ApplicationStatus.APPROVED,
     ApplicationStatus.CANCELED,
 ])
+
+export const jobStatusSchema = z.enum([JobStatus.ACTIVE, JobStatus.CLOSED, JobStatus.DELETED])
 
 export const authUserSchema = z.object({
     id: z.string(),

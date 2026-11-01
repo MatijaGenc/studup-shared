@@ -1,9 +1,30 @@
 export const JobStatus = {
+    ACTIVE: 'ACTIVE',
+    CLOSED: 'CLOSED',
+    DELETED: 'DELETED',
+} as const
+export type JobStatusValue = (typeof JobStatus)[keyof typeof JobStatus]
+
+export const JobStatusId = {
     ACTIVE: 1,
     CLOSED: 2,
     DELETED: 3,
 } as const
-export type JobStatusValue = (typeof JobStatus)[keyof typeof JobStatus]
+export type JobStatusIdValue = (typeof JobStatusId)[keyof typeof JobStatusId]
+
+const JOB_STATUS_BY_ID: Record<JobStatusIdValue, JobStatusValue> = {
+    [JobStatusId.ACTIVE]: JobStatus.ACTIVE,
+    [JobStatusId.CLOSED]: JobStatus.CLOSED,
+    [JobStatusId.DELETED]: JobStatus.DELETED,
+}
+
+export function jobStatusFromId(id: number): JobStatusValue {
+    return JOB_STATUS_BY_ID[id as JobStatusIdValue] ?? JobStatus.ACTIVE
+}
+
+export function jobStatusToId(status: JobStatusValue): JobStatusIdValue {
+    return JobStatusId[status]
+}
 
 export const JobType = {
     NORMAL: 1,

@@ -1,9 +1,17 @@
 export declare const JobStatus: {
+    readonly ACTIVE: 'ACTIVE';
+    readonly CLOSED: 'CLOSED';
+    readonly DELETED: 'DELETED';
+};
+export type JobStatusValue = (typeof JobStatus)[keyof typeof JobStatus];
+export declare const JobStatusId: {
     readonly ACTIVE: 1;
     readonly CLOSED: 2;
     readonly DELETED: 3;
 };
-export type JobStatusValue = (typeof JobStatus)[keyof typeof JobStatus];
+export type JobStatusIdValue = (typeof JobStatusId)[keyof typeof JobStatusId];
+export declare function jobStatusFromId(id: number): JobStatusValue;
+export declare function jobStatusToId(status: JobStatusValue): JobStatusIdValue;
 export declare const JobType: {
     readonly NORMAL: 1;
     readonly FAST: 2;

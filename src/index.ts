@@ -11,6 +11,7 @@ export {
     jobApplicationCreateRequestSchema,
     jobApplicationStatusRequestSchema,
     jobSearchRequestSchema,
+    jobStatusSchema,
     loginRequestSchema,
     ratingRequestSchema,
     refreshRequestSchema,
@@ -23,6 +24,7 @@ export type {
     ApplicationStatusValue,
     ComplainStatusValue,
     ComplaintStatusValue,
+    JobStatusIdValue,
     JobStatusValue,
     JobTypeValue,
     NotificationTypeValue,
@@ -35,7 +37,10 @@ export {
     ComplainStatus,
     ComplaintStatus,
     JobStatus,
+    JobStatusId,
     JobType,
+    jobStatusFromId,
+    jobStatusToId,
     NotificationType,
 } from './enums'
 export type {

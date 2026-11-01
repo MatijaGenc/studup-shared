@@ -35,3 +35,8 @@ test('job search schema defaults pagination and rejects unsupported sort fields'
     })
     assert.equal(shared.jobSearchRequestSchema.safeParse({ sortBy: 'hourlyRate' }).success, false)
 })
+
+test('job status schema accepts only canonical wire values', () => {
+    assert.equal(shared.jobStatusSchema.safeParse('CLOSED').success, true)
+    assert.equal(shared.jobStatusSchema.safeParse(2).success, false)
+})

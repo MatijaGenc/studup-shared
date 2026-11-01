@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jobSearchRequestSchema = exports.ratingRequestSchema = exports.jobApplicationStatusRequestSchema = exports.jobApplicationCreateRequestSchema = exports.verifyRegistrationRequestSchema = exports.refreshRequestSchema = exports.loginRequestSchema = exports.refreshResponseSchema = exports.authSessionResponseSchema = exports.authUserSchema = exports.applicationStatusSchema = exports.uuidSchema = void 0;
+exports.jobSearchRequestSchema = exports.ratingRequestSchema = exports.jobApplicationStatusRequestSchema = exports.jobApplicationCreateRequestSchema = exports.verifyRegistrationRequestSchema = exports.refreshRequestSchema = exports.loginRequestSchema = exports.refreshResponseSchema = exports.authSessionResponseSchema = exports.authUserSchema = exports.jobStatusSchema = exports.applicationStatusSchema = exports.uuidSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("./enums");
 const validation_1 = require("./validation");
@@ -11,6 +11,7 @@ exports.applicationStatusSchema = zod_1.z.enum([
     enums_1.ApplicationStatus.APPROVED,
     enums_1.ApplicationStatus.CANCELED,
 ]);
+exports.jobStatusSchema = zod_1.z.enum([enums_1.JobStatus.ACTIVE, enums_1.JobStatus.CLOSED, enums_1.JobStatus.DELETED]);
 exports.authUserSchema = zod_1.z.object({
     id: zod_1.z.string(),
     isAdmin: zod_1.z.boolean(),

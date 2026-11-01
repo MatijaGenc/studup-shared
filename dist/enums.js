@@ -1,13 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NotificationType = exports.ComplainStatus = exports.ComplaintStatus = exports.ApplicationStatusId = exports.ApplicationStatus = exports.JobType = exports.JobStatus = void 0;
+exports.NotificationType = exports.ComplainStatus = exports.ComplaintStatus = exports.ApplicationStatusId = exports.ApplicationStatus = exports.JobType = exports.JobStatusId = exports.JobStatus = void 0;
+exports.jobStatusFromId = jobStatusFromId;
+exports.jobStatusToId = jobStatusToId;
 exports.applicationStatusFromId = applicationStatusFromId;
 exports.applicationStatusToId = applicationStatusToId;
 exports.JobStatus = {
+    ACTIVE: 'ACTIVE',
+    CLOSED: 'CLOSED',
+    DELETED: 'DELETED',
+};
+exports.JobStatusId = {
     ACTIVE: 1,
     CLOSED: 2,
     DELETED: 3,
 };
+const JOB_STATUS_BY_ID = {
+    [exports.JobStatusId.ACTIVE]: exports.JobStatus.ACTIVE,
+    [exports.JobStatusId.CLOSED]: exports.JobStatus.CLOSED,
+    [exports.JobStatusId.DELETED]: exports.JobStatus.DELETED,
+};
+function jobStatusFromId(id) {
+    return JOB_STATUS_BY_ID[id] ?? exports.JobStatus.ACTIVE;
+}
+function jobStatusToId(status) {
+    return exports.JobStatusId[status];
+}
 exports.JobType = {
     NORMAL: 1,
     FAST: 2,

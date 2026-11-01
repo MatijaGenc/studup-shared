@@ -6,6 +6,11 @@ export declare const applicationStatusSchema: z.ZodEnum<{
     CANCELED: "CANCELED";
     REJECTED: "REJECTED";
 }>;
+export declare const jobStatusSchema: z.ZodEnum<{
+    ACTIVE: "ACTIVE";
+    CLOSED: "CLOSED";
+    DELETED: "DELETED";
+}>;
 export declare const authUserSchema: z.ZodObject<{
     id: z.ZodString;
     isAdmin: z.ZodBoolean;
