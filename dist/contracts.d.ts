@@ -90,4 +90,25 @@ export declare const jobSearchRequestSchema: z.ZodObject<{
     }>>;
     title: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
+export declare const documentKindSchema: z.ZodEnum<{
+    cert1: "cert1";
+    cert2: "cert2";
+    cv: "cv";
+}>;
+export type DocumentKind = z.infer<typeof documentKindSchema>;
+export declare const documentDownloadUrlSchema: z.ZodURL;
+export declare const documentDownloadRequestSchema: z.ZodObject<{
+    studentId: z.ZodString;
+    documentKind: z.ZodEnum<{
+        cert1: "cert1";
+        cert2: "cert2";
+        cv: "cv";
+    }>;
+}, z.core.$strip>;
+export type DocumentDownloadRequest = z.infer<typeof documentDownloadRequestSchema>;
+export declare const documentDownloadResponseSchema: z.ZodObject<{
+    downloadUrl: z.ZodURL;
+    expiresInSeconds: z.ZodNullable<z.ZodNumber>;
+}, z.core.$strip>;
+export type DocumentDownloadResponse = z.infer<typeof documentDownloadResponseSchema>;
 //# sourceMappingURL=contracts.d.ts.map

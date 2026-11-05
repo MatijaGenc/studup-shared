@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jobSearchRequestSchema = exports.ratingRequestSchema = exports.jobApplicationStatusRequestSchema = exports.jobApplicationCreateRequestSchema = exports.verifyRegistrationRequestSchema = exports.refreshRequestSchema = exports.loginRequestSchema = exports.refreshResponseSchema = exports.authSessionResponseSchema = exports.authUserSchema = exports.jobStatusSchema = exports.applicationStatusSchema = exports.uuidSchema = void 0;
+exports.documentDownloadResponseSchema = exports.documentDownloadRequestSchema = exports.documentDownloadUrlSchema = exports.documentKindSchema = exports.jobSearchRequestSchema = exports.ratingRequestSchema = exports.jobApplicationStatusRequestSchema = exports.jobApplicationCreateRequestSchema = exports.verifyRegistrationRequestSchema = exports.refreshRequestSchema = exports.loginRequestSchema = exports.refreshResponseSchema = exports.authSessionResponseSchema = exports.authUserSchema = exports.jobStatusSchema = exports.applicationStatusSchema = exports.uuidSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("./enums");
 const validation_1 = require("./validation");
@@ -64,5 +64,17 @@ exports.jobSearchRequestSchema = zod_1.z.object({
     sortBy: zod_1.z.enum(['createdAt', 'rating']).default('createdAt'),
     sortOrder: zod_1.z.enum(['asc', 'desc']).default('desc'),
     title: zod_1.z.string().max(200).optional(),
+});
+exports.documentKindSchema = zod_1.z.enum(['cv', 'cert1', 'cert2']);
+exports.documentDownloadUrlSchema = zod_1.z.url({ protocol: /^https$/ }).refine((value) => !/^https:\/\/[^/?#]*@/i.test(value), {
+    message: 'URL must use HTTPS without embedded credentials.',
+});
+exports.documentDownloadRequestSchema = zod_1.z.object({
+    studentId: exports.uuidSchema,
+    documentKind: exports.documentKindSchema,
+});
+exports.documentDownloadResponseSchema = zod_1.z.object({
+    downloadUrl: exports.documentDownloadUrlSchema,
+    expiresInSeconds: zod_1.z.number().int().positive().max(300).nullable(),
 });
 //# sourceMappingURL=contracts.js.map

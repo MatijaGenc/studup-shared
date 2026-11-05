@@ -4,10 +4,19 @@ export {
     MAX_CV_SIZE_BYTES,
     MAX_PROFILE_IMAGE_SIZE_BYTES,
 } from './constants'
+export type {
+    DocumentDownloadRequest,
+    DocumentDownloadResponse,
+    DocumentKind,
+} from './contracts'
 export {
     applicationStatusSchema,
     authSessionResponseSchema,
     authUserSchema,
+    documentDownloadRequestSchema,
+    documentDownloadResponseSchema,
+    documentDownloadUrlSchema,
+    documentKindSchema,
     jobApplicationCreateRequestSchema,
     jobApplicationStatusRequestSchema,
     jobSearchRequestSchema,

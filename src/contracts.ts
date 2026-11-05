@@ -76,3 +76,22 @@ export const jobSearchRequestSchema = z.object({
     sortOrder: z.enum(['asc', 'desc']).default('desc'),
     title: z.string().max(200).optional(),
 })
+
+export const documentKindSchema = z.enum(['cv', 'cert1', 'cert2'])
+export type DocumentKind = z.infer<typeof documentKindSchema>
+
+export const documentDownloadUrlSchema = z.url({ protocol: /^https$/ }).refine((value) => !/^https:\/\/[^/?#]*@/i.test(value), {
+    message: 'URL must use HTTPS without embedded credentials.',
+})
+
+export const documentDownloadRequestSchema = z.object({
+    studentId: uuidSchema,
+    documentKind: documentKindSchema,
+})
+export type DocumentDownloadRequest = z.infer<typeof documentDownloadRequestSchema>
+
+export const documentDownloadResponseSchema = z.object({
+    downloadUrl: documentDownloadUrlSchema,
+    expiresInSeconds: z.number().int().positive().max(300).nullable(),
+})
+export type DocumentDownloadResponse = z.infer<typeof documentDownloadResponseSchema>
