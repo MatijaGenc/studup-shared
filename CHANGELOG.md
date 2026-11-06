@@ -2,6 +2,12 @@
 
 This file records compatibility-relevant information for the current `@studup/shared` package version. The package metadata currently declares `0.1.0`. This repository has no published version tags or release dates recorded, so no publication dates are asserted here.
 
+## Unreleased — malformed date text
+
+- Reject NUL and unpaired UTF-16 surrogates before converting date strings. JavaScript's Date parser can otherwise accept a date prefix followed by NUL.
+- Preserve valid ISO offsets, real Date inputs, optional empty strings/null, and existing invalid-date messages. Public schema exports are unchanged; date-only/timezone policy is unchanged.
+- Focused packaged-output regressions cover the failure and compatibility cases. Consumer verification uses the exact built package in backend, web and mobile before promotion; native builds remain local.
+
 ## 0.1.0 — current package baseline
 
 ### Package contract

@@ -81,10 +81,22 @@ export const maximumApprovedApplications = z.number().int().min(1)
 
 export const jobTitle = z.string().min(1, messages.required).max(70, messages.jobTitleMaxLength)
 
+const containsUnsupportedDateCharacters = (value: string) => {
+    for (const character of value) {
+        const codePoint = character.codePointAt(0) ?? 0
+        if (codePoint === 0 || (codePoint >= 0xd800 && codePoint <= 0xdfff)) return true
+    }
+    return false
+}
+
 export const stringDate = z.union([
     z.null(),
     z.string().transform((dateString, context) => {
         if (dateString === '') return null
+        if (containsUnsupportedDateCharacters(dateString)) {
+            context.addIssue({ code: z.ZodIssueCode.custom, message: messages.invalidDate })
+            return z.NEVER
+        }
         const date = new Date(dateString)
         if (isNaN(date.getTime())) {
             context.addIssue({ code: z.ZodIssueCode.custom, message: messages.invalidDate })

@@ -1,6 +1,39 @@
 const { test } = require('node:test')
 const assert = require('node:assert/strict')
 const shared = require('../dist/index.js')
+
+const collectIssueMessages = (issues) =>
+    issues.flatMap((issue) => [issue.message, ...collectIssueMessages(issue.errors ? issue.errors.flat() : [])])
+
+const assertInvalidDate = (value) => {
+    const result = shared.stringDate.safeParse(value)
+    assert.equal(result.success, false, `expected ${JSON.stringify(value)} to be rejected`)
+    assert.ok(
+        collectIssueMessages(result.error.issues).includes('Datum nije ispravnog formata.'),
+        `expected invalidDate issue for ${JSON.stringify(value)}`,
+    )
+}
+
+test('packaged stringDate rejects NUL and lone surrogate date text', () => {
+    assertInvalidDate('2000-01-01T00:00:00.000Z\u0000')
+    assertInvalidDate('\u0000')
+    assertInvalidDate('2000-01-01T00:00:00.000Z\uD800')
+    assertInvalidDate('2000-01-01T00:00:00.000Z\uDC00')
+    assertInvalidDate('\uD800')
+    assertInvalidDate('\uDC00')
+})
+test('packaged stringDate preserves empty, null, ISO offset, Date and invalid-date behavior', () => {
+    assert.equal(shared.stringDate.parse(''), null)
+    assert.equal(shared.stringDate.parse(null), null)
+    const parsed = shared.stringDate.parse('2000-01-01T00:00:00.000Z')
+    assert.ok(parsed instanceof Date)
+    assert.equal(parsed.toISOString(), '2000-01-01T00:00:00.000Z')
+    assert.equal(shared.stringDate.parse('2000-01-01T00:00:00+02:00').toISOString(), '1999-12-31T22:00:00.000Z')
+    const date = new Date('2020-02-02T00:00:00.000Z')
+    assert.equal(shared.stringDate.parse(date), date)
+    assertInvalidDate('not-a-date')
+    assert.equal(shared.stringDate.safeParse(new Date('invalid')).success, false)
+})
 test('packaged schemas reject invalid primitive inputs', () => {
     assert.equal(shared.email.safeParse('not-an-email').success, false)
     assert.equal(shared.jmbag.safeParse('abc').success, false)

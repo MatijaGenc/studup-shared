@@ -65,11 +65,23 @@ exports.jobDescription = zod_1.z.string().max(500, exports.messages.jobDescripti
 exports.jobHourlyRate = zod_1.z.number().positive(exports.messages.required);
 exports.maximumApprovedApplications = zod_1.z.number().int().min(1);
 exports.jobTitle = zod_1.z.string().min(1, exports.messages.required).max(70, exports.messages.jobTitleMaxLength);
+const containsUnsupportedDateCharacters = (value) => {
+    for (const character of value) {
+        const codePoint = character.codePointAt(0) ?? 0;
+        if (codePoint === 0 || (codePoint >= 0xd800 && codePoint <= 0xdfff))
+            return true;
+    }
+    return false;
+};
 exports.stringDate = zod_1.z.union([
     zod_1.z.null(),
     zod_1.z.string().transform((dateString, context) => {
         if (dateString === '')
             return null;
+        if (containsUnsupportedDateCharacters(dateString)) {
+            context.addIssue({ code: zod_1.z.ZodIssueCode.custom, message: exports.messages.invalidDate });
+            return zod_1.z.NEVER;
+        }
         const date = new Date(dateString);
         if (isNaN(date.getTime())) {
             context.addIssue({ code: zod_1.z.ZodIssueCode.custom, message: exports.messages.invalidDate });
