@@ -1,2 +1,4 @@
 node_modules/
 *.tsbuildinfo
+# Machine-local Yarn install state
+.yarn/install-state.gz

@@ -55,6 +55,26 @@ test('document download response accepts managed and external expiry values', ()
     )
 })
 
+test('document download response applies URL safety to its exported downloadUrl field', () => {
+    for (const downloadUrl of [
+        'http://studup-cv.s3.eu-central-1.amazonaws.com/cv.pdf',
+        '/documents/cert1',
+        'https://user:secret@university.example.edu/certificate.pdf',
+    ]) {
+        assert.equal(
+            shared.documentDownloadResponseSchema.safeParse({ downloadUrl, expiresInSeconds: 60 }).success,
+            false,
+            downloadUrl,
+        )
+    }
+    assert.equal(
+        shared.documentDownloadResponseSchema.safeParse({
+            downloadUrl: 'https://university.example.edu/certificates/student-1.pdf',
+        }).success,
+        false,
+    )
+})
+
 test('document download response rejects non-finite, fractional, and out-of-range expiries', () => {
     for (const expiresInSeconds of [Infinity, -Infinity, Number.NaN, 0, -1, 1.5, 301]) {
         assert.equal(
