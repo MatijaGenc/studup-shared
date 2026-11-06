@@ -13,3 +13,7 @@ Before marking a task done, attach its commands, outcomes, test counts, relevant
 Run `yarn install --immutable`, then `yarn check`. The runner also executes `test:consumers`, compiling a consumer against the built public declarations with strict TypeScript. Direct Node tests import the packaged dist entry point and cover exports, validation and a regression test proving an empty test directory fails. Gate regression tests are separate; they cannot hide a missing shared test suite.
 
 For public runtime/type changes additionally run backend, frontend and mobile quality gates against the changed package and verify their pinned dependency revisions before release. The small compile fixture checks representative API families, not every consumer or semantic compatibility. `prepare`/`prepack` build distribution files; the hook installer only changes Git config when the package itself is a Git checkout, never a consumer's parent repository.
+
+## Dependency license metadata
+
+`licenses:check` runs in the mandatory chain before build. See [DEPENDENCY_LICENSES.md](DEPENDENCY_LICENSES.md) for scope, drift failures and explicitly unresolved findings. Passing metadata checks does not settle legal or distribution obligations.

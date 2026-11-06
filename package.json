@@ -11,13 +11,14 @@
         "typecheck": "tsc --noEmit",
         "lint": "biome check .",
         "test": "node scripts/test.cjs",
-        "test:gates": "node --test scripts/quality-self-test.cjs scripts/secret-scan.selftest.cjs",
+        "test:gates": "node --test scripts/quality-self-test.cjs scripts/secret-scan.selftest.cjs scripts/dependency-license-inventory.test.cjs scripts/check-dependency-licenses.test.cjs",
         "secret:scan": "node scripts/secret-scan.cjs --all-tracked",
         "check": "node scripts/check.cjs",
         "format:check": "biome format .",
         "test:quality": "yarn test && yarn test:gates",
         "hooks:install": "node scripts/install-hooks.cjs",
-        "test:consumers": "tsc --project tests/tsconfig.consumer.json"
+        "test:consumers": "tsc --project tests/tsconfig.consumer.json",
+        "licenses:check": "node scripts/check-dependency-licenses.cjs"
     },
     "peerDependencies": {
         "zod": "^4.0.0"
@@ -33,6 +34,7 @@
             "typecheck",
             "format:check",
             "lint",
+            "licenses:check",
             "build",
             "test:quality",
             "test:consumers"
