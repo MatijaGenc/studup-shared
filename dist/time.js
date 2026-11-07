@@ -72,7 +72,11 @@ function jobDateOnly(value) {
             }
             return new Date(Date.UTC(year, month - 1, day));
         }
-        // Full instants are accepted for compatibility; the Zagreb calendar day wins.
+        // Only full ISO date-times fall back to instant parsing; dotted dates and other
+        // locale-specific text must not be silently reinterpreted.
+        if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(text)) {
+            throw new RangeError('Datum nije ispravnog formata.');
+        }
         const instant = new Date(text);
         if (Number.isNaN(instant.getTime())) {
             throw new RangeError('Datum nije ispravnog formata.');
