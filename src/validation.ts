@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { MAX_JOB_HOURLY_RATE } from './constants'
 import { ComplaintStatus } from './enums'
 
 const ONLY_NUMBERS_REGEX = /^\d+$/
@@ -27,6 +28,8 @@ export const messages = {
     invalidCode: 'Kod je neispravnog formata.',
     jobDescriptionMaxLength: 'Opis posla mora sadržavati do 500 znakova.',
     jobTitleMaxLength: 'Naslov posla može sadržavati do 70 znakova.',
+    jobHourlyRateMax: 'Satnica može iznositi najviše 1000 EUR.',
+    jobHourlyRatePrecision: 'Satnica može imati najviše dva decimalna mjesta.',
     invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
     gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 }
@@ -75,7 +78,15 @@ export const rating = z.number().int().min(1).max(5)
 
 export const jobDescription = z.string().max(500, messages.jobDescriptionMaxLength)
 
-export const jobHourlyRate = z.number().positive(messages.required)
+const hasAtMostTwoDecimals = (value: number) => Math.abs(Math.round(value * 100) - value * 100) < 1e-6
+
+// Wages are stored as a Float for now; only amounts representable as whole cents are
+// accepted so a future Decimal/cents migration cannot inherit silent rounding drift.
+export const jobHourlyRate = z
+    .number()
+    .positive(messages.required)
+    .max(MAX_JOB_HOURLY_RATE, messages.jobHourlyRateMax)
+    .refine(hasAtMostTwoDecimals, messages.jobHourlyRatePrecision)
 
 export const maximumApprovedApplications = z.number().int().min(1)
 

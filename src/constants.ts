@@ -5,6 +5,9 @@ export const ALLOWED_PROFILE_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'ima
 // 4 MiB of file data becomes ~5.6 MB as base64 plus JSON, which stays under the
 // 6 MB synchronous Lambda invocation limit used by the API Gateway proxy.
 // A 10 MiB file cannot be transported through this path at all.
+// Sanity ceiling for a student hourly wage; not a billing policy.
+export const MAX_JOB_HOURLY_RATE = 1000
+
 export const MAX_CV_SIZE_BYTES = 4 * 1024 * 1024
 
 export const ALLOWED_CV_MIME_TYPES = [
