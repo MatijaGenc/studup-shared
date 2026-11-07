@@ -57,6 +57,7 @@ export {
     formatJobDate,
     formatJobTime,
     JOB_TIME_ZONE,
+    jobDateKey,
     jobDateOnly,
     jobHour,
     zonedJobDateTime,

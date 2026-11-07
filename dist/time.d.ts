@@ -17,6 +17,8 @@ export declare function zonedJobDateTime(date: string, time: string): Date;
 export declare function jobHour(value: string | Date): number;
 /** Zagreb `HH:mm` of a stored instant. */
 export declare function formatJobTime(value: string | Date): string;
+/** Zagreb calendar date key (`YYYY-MM-DD`) of a stored date-only value or instant. */
+export declare function jobDateKey(value: string | Date): string;
 /** Croatian display date for a stored date-only value (UTC midnight) or instant. */
 export declare function formatJobDate(value: string | Date): string;
 //# sourceMappingURL=time.d.ts.map

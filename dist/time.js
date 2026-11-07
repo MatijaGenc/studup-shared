@@ -5,6 +5,7 @@ exports.jobDateOnly = jobDateOnly;
 exports.zonedJobDateTime = zonedJobDateTime;
 exports.jobHour = jobHour;
 exports.formatJobTime = formatJobTime;
+exports.jobDateKey = jobDateKey;
 exports.formatJobDate = formatJobDate;
 /**
  * Job scheduling is defined in the business timezone, while instants are stored in UTC.
@@ -136,6 +137,15 @@ function formatJobTime(value) {
     }
     const parts = readParts(date);
     return `${String(parts.hour).padStart(2, '0')}:${String(parts.minute).padStart(2, '0')}`;
+}
+/** Zagreb calendar date key (`YYYY-MM-DD`) of a stored date-only value or instant. */
+function jobDateKey(value) {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) {
+        throw new RangeError('Datum nije ispravan.');
+    }
+    const parts = readParts(date);
+    return `${parts.year}-${String(parts.month).padStart(2, '0')}-${String(parts.day).padStart(2, '0')}`;
 }
 /** Croatian display date for a stored date-only value (UTC midnight) or instant. */
 function formatJobDate(value) {

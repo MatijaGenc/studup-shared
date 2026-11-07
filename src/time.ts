@@ -160,6 +160,16 @@ export function formatJobTime(value: string | Date): string {
     return `${String(parts.hour).padStart(2, '0')}:${String(parts.minute).padStart(2, '0')}`
 }
 
+/** Zagreb calendar date key (`YYYY-MM-DD`) of a stored date-only value or instant. */
+export function jobDateKey(value: string | Date): string {
+    const date = value instanceof Date ? value : new Date(value)
+    if (Number.isNaN(date.getTime())) {
+        throw new RangeError('Datum nije ispravan.')
+    }
+    const parts = readParts(date)
+    return `${parts.year}-${String(parts.month).padStart(2, '0')}-${String(parts.day).padStart(2, '0')}`
+}
+
 /** Croatian display date for a stored date-only value (UTC midnight) or instant. */
 export function formatJobDate(value: string | Date): string {
     const date = value instanceof Date ? value : new Date(value)
