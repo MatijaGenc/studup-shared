@@ -13,35 +13,35 @@
 ```yaml
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 3
-    groups:
-      npm-patch:
-        applies-to: version-updates
-        patterns: ["*"]
-        update-types: ["patch"]
-      npm-minor:
-        applies-to: version-updates
-        patterns: ["*"]
-        update-types: ["minor"]
+    - package-ecosystem: "npm"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      open-pull-requests-limit: 3
+      groups:
+          npm-patch:
+              applies-to: version-updates
+              patterns: ["*"]
+              update-types: ["patch"]
+          npm-minor:
+              applies-to: version-updates
+              patterns: ["*"]
+              update-types: ["minor"]
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 3
-    groups:
-      actions-patch:
-        applies-to: version-updates
-        patterns: ["*"]
-        update-types: ["patch"]
-      actions-minor:
-        applies-to: version-updates
-        patterns: ["*"]
-        update-types: ["minor"]
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      open-pull-requests-limit: 3
+      groups:
+          actions-patch:
+              applies-to: version-updates
+              patterns: ["*"]
+              update-types: ["patch"]
+          actions-minor:
+              applies-to: version-updates
+              patterns: ["*"]
+              update-types: ["minor"]
 ```
 
 The committed file uses expanded YAML lists; the content above is equivalent.
