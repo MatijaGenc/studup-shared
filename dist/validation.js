@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createJobComplaintSchema = exports.complaintSchema = exports.jobSchema = exports.employerSchema = exports.studentSchema = exports.gdprConsent = exports.stringDate = exports.jobTitle = exports.maximumApprovedApplications = exports.jobHourlyRate = exports.jobDescription = exports.rating = exports.verificationCode = exports.companyName = exports.address = exports.oib = exports.lastName = exports.firstName = exports.password = exports.phoneNumber = exports.jmbag = exports.email = exports.messages = void 0;
 const zod_1 = require("zod");
+const constants_1 = require("./constants");
 const enums_1 = require("./enums");
 const ONLY_NUMBERS_REGEX = /^\d+$/;
 const CROATIAN_PHONE_REGEX = /^(?:\+385|0)(?:1|91|92|95|97|99|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53|54|55|56|62|63|64|65|71|72|73|74|75|76|77|81|82|83|84|85|86|87|88|89)\d{6,7}$/;
@@ -27,6 +28,8 @@ exports.messages = {
     invalidCode: 'Kod je neispravnog formata.',
     jobDescriptionMaxLength: 'Opis posla mora sadržavati do 500 znakova.',
     jobTitleMaxLength: 'Naslov posla može sadržavati do 70 znakova.',
+    jobHourlyRateMax: 'Satnica može iznositi najviše 1000 EUR.',
+    jobHourlyRatePrecision: 'Satnica može imati najviše dva decimalna mjesta.',
     invalidPhoneFormat: 'Broj mobitela nije ispravnog formata.',
     gdprConsentRequired: 'Suglasnost za obradu osobnih podataka je obvezna.',
 };
@@ -62,7 +65,14 @@ exports.companyName = zod_1.z.string().min(1, { message: exports.messages.requir
 exports.verificationCode = zod_1.z.string().length(6, { message: exports.messages.invalidCode });
 exports.rating = zod_1.z.number().int().min(1).max(5);
 exports.jobDescription = zod_1.z.string().max(500, exports.messages.jobDescriptionMaxLength);
-exports.jobHourlyRate = zod_1.z.number().positive(exports.messages.required);
+const hasAtMostTwoDecimals = (value) => Math.abs(Math.round(value * 100) - value * 100) < 1e-6;
+// Wages are stored as a Float for now; only amounts representable as whole cents are
+// accepted so a future Decimal/cents migration cannot inherit silent rounding drift.
+exports.jobHourlyRate = zod_1.z
+    .number()
+    .positive(exports.messages.required)
+    .max(constants_1.MAX_JOB_HOURLY_RATE, exports.messages.jobHourlyRateMax)
+    .refine(hasAtMostTwoDecimals, exports.messages.jobHourlyRatePrecision);
 exports.maximumApprovedApplications = zod_1.z.number().int().min(1);
 exports.jobTitle = zod_1.z.string().min(1, exports.messages.required).max(70, exports.messages.jobTitleMaxLength);
 const containsUnsupportedDateCharacters = (value) => {

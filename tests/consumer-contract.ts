@@ -16,20 +16,27 @@ import {
     documentKindSchema,
     email,
     employerSchema,
+    formatJobDate,
+    formatJobTime,
     JobStatus,
     JobStatusId,
     type JobStatusValue,
     JobType,
     type JobTypeValue,
     jobApplicationCreateRequestSchema,
+    jobDateOnly,
+    jobHour,
+    jobHourlyRate,
     jobSchema,
     jobSearchRequestSchema,
     jobStatusFromId,
     jobStatusToId,
     MAX_CV_SIZE_BYTES,
+    MAX_JOB_HOURLY_RATE,
     phoneNumber,
     studentSchema,
     type UserType,
+    zonedJobDateTime,
 } from '../dist'
 
 // Compile the same public value/type families consumed by web, native and backend.
@@ -45,6 +52,13 @@ const jobStatusId: number = JobStatusId.ACTIVE
 const mappedJobStatus: JobStatusValue = jobStatusFromId(jobStatusId)
 const mappedJobStatusId: number = jobStatusToId(mappedJobStatus)
 const maxBytes: number = MAX_CV_SIZE_BYTES
+const maxWage: number = MAX_JOB_HOURLY_RATE
+const parsedWage: number = jobHourlyRate.parse(8.5)
+const calendarDate: Date = jobDateOnly('2026-11-07')
+const wallClock: Date = zonedJobDateTime('2026-11-07', '08:00')
+const displayDate: string = formatJobDate(calendarDate)
+const displayTime: string = formatJobTime(wallClock)
+const hour: number = jobHour(wallClock)
 const types: readonly string[] = ALLOWED_CV_MIME_TYPES
 const normalizedPhone: string = phoneNumber.parse('+385 91 234 5678')
 const documentKind: DocumentKind = 'cert2'
@@ -88,6 +102,13 @@ void [
     mappedJobStatus,
     mappedJobStatusId,
     maxBytes,
+    maxWage,
+    parsedWage,
+    calendarDate,
+    wallClock,
+    displayDate,
+    displayTime,
+    hour,
     types,
     normalizedPhone,
     documentKind,

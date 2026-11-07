@@ -21,6 +21,8 @@ export declare const messages: {
     invalidCode: string;
     jobDescriptionMaxLength: string;
     jobTitleMaxLength: string;
+    jobHourlyRateMax: string;
+    jobHourlyRatePrecision: string;
     invalidPhoneFormat: string;
     gdprConsentRequired: string;
 };
