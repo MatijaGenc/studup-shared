@@ -68,18 +68,26 @@ function isValidCalendarDate(year: number, month: number, day: number): boolean 
 /** UTC instant for a Zagreb calendar date at midnight. */
 export function jobDateOnly(value: string | Date): Date {
     if (typeof value === 'string') {
-        const match = DATE_ONLY.exec(value.trim())
-        if (!match) {
+        const text = value.trim()
+        const match = DATE_ONLY.exec(text)
+        if (match) {
+            const [, rawYear, rawMonth, rawDay] = match
+            const year = Number(rawYear)
+            const month = Number(rawMonth)
+            const day = Number(rawDay)
+            if (!isValidCalendarDate(year, month, day)) {
+                throw new RangeError('Datum nije ispravan.')
+            }
+            return new Date(Date.UTC(year, month - 1, day))
+        }
+
+        // Full instants are accepted for compatibility; the Zagreb calendar day wins.
+        const instant = new Date(text)
+        if (Number.isNaN(instant.getTime())) {
             throw new RangeError('Datum nije ispravnog formata.')
         }
-        const [, rawYear, rawMonth, rawDay] = match
-        const year = Number(rawYear)
-        const month = Number(rawMonth)
-        const day = Number(rawDay)
-        if (!isValidCalendarDate(year, month, day)) {
-            throw new RangeError('Datum nije ispravan.')
-        }
-        return new Date(Date.UTC(year, month - 1, day))
+        const parts = readParts(instant)
+        return new Date(Date.UTC(parts.year, parts.month - 1, parts.day))
     }
 
     if (!(value instanceof Date) || Number.isNaN(value.getTime())) {

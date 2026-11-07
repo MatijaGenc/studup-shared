@@ -6,6 +6,7 @@ test('jobDateOnly treats a calendar date as UTC midnight', () => {
     assert.equal(shared.jobDateOnly('2026-11-07').toISOString(), '2026-11-07T00:00:00.000Z')
     assert.equal(shared.jobDateOnly('2026-03-29').toISOString(), '2026-03-29T00:00:00.000Z')
     assert.equal(shared.jobDateOnly(new Date('2026-11-06T23:30:00.000Z')).toISOString(), '2026-11-07T00:00:00.000Z')
+    assert.equal(shared.jobDateOnly('2026-11-06T23:30:00.000Z').toISOString(), '2026-11-07T00:00:00.000Z')
     assert.equal(shared.jobDateOnly(new Date('2026-11-07T22:30:00.000Z')).toISOString(), '2026-11-07T00:00:00.000Z')
 })
 
