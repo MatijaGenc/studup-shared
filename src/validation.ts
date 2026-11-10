@@ -109,13 +109,13 @@ export const stringDate = z.union([
             return z.NEVER
         }
         const date = new Date(dateString)
-        if (isNaN(date.getTime())) {
+        if (Number.isNaN(date.getTime())) {
             context.addIssue({ code: z.ZodIssueCode.custom, message: messages.invalidDate })
             return z.NEVER
         }
         return date
     }),
-    z.date().refine((date) => !isNaN(date.getTime()), { message: messages.invalidDate }),
+    z.date().refine((date) => !Number.isNaN(date.getTime()), { message: messages.invalidDate }),
 ])
 
 export const gdprConsent = z.literal(true, { message: messages.gdprConsentRequired })

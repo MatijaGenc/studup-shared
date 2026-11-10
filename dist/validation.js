@@ -93,13 +93,13 @@ exports.stringDate = zod_1.z.union([
             return zod_1.z.NEVER;
         }
         const date = new Date(dateString);
-        if (isNaN(date.getTime())) {
+        if (Number.isNaN(date.getTime())) {
             context.addIssue({ code: zod_1.z.ZodIssueCode.custom, message: exports.messages.invalidDate });
             return zod_1.z.NEVER;
         }
         return date;
     }),
-    zod_1.z.date().refine((date) => !isNaN(date.getTime()), { message: exports.messages.invalidDate }),
+    zod_1.z.date().refine((date) => !Number.isNaN(date.getTime()), { message: exports.messages.invalidDate }),
 ]);
 exports.gdprConsent = zod_1.z.literal(true, { message: exports.messages.gdprConsentRequired });
 exports.studentSchema = zod_1.z.object({
