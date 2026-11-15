@@ -24,4 +24,14 @@ jobs:
                   node-version: 26
             - run: npm install --global corepack && corepack enable && corepack prepare yarn@4.18.0 --activate
             - run: yarn install --immutable
+            - name: Move shipped output aside before rebuilding
+              run: mv dist "$(mktemp -d)"
             - run: yarn check
+            - name: Verify committed runtime and declarations match the build
+              run: |
+                  changes="$(git status --porcelain --untracked-files=all -- dist)"
+                  if [ -n "$changes" ]; then
+                      printf '%s\n' "$changes"
+                      echo "Regenerate dist with yarn build and commit the generated changes."
+                      exit 1
+                  fi

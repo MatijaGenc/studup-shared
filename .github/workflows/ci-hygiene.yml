@@ -48,4 +48,4 @@ jobs:
             - run: npm install --global corepack && corepack enable
             - run: corepack prepare yarn@4.18.0 --activate
             - name: Audit production dependencies
-              run: yarn npm audit --environment production
+              run: yarn npm audit --environment production --recursive
